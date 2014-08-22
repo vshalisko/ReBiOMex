@@ -1,0 +1,40 @@
+<table width="100%" cellpadding="0" cellspacing="1" border="0">
+<tr>
+	<td width="580px">
+	<div class="fixed_width_menu">
+	<ul>
+	<li><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=modify_form&table=view_unit_collector_full&s_id=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_edit.png" alt="editar registro" height="16" width="16" border="0" /><br />modificar registro de colecta</a></li>
+	<TMPL_IF NAME="SPECIMEN_LIST">
+	<!-- in case at least one specimen is present, local modifications menu appear there -->
+	<TMPL_ELSE>
+		<li><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=add_new_form&table=view_specimen&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_edit.png" alt="agregar registro" height="16" width="16" border="0" /><br />nuevo espécimen</a></li>
+	</TMPL_IF>
+	<li><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=modify_form&table=view_normal_identifications&s_id=<TMPL_VAR NAME="IDENTIFICATION_ID">">
+	<img src="../graphics/icon_edit.png" alt="modificar registro" height="16" width="16" border="0" /><br />modificar identificación</a></li>
+	<TMPL_IF NAME="ALT_IDENTIFICATION">
+	<!-- in case at least one alternative identification is present, local modifications menu appear there -->
+	<TMPL_ELSE>
+		<li><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=search&table=view_normal_identifications&s_2=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_select.png" alt="consultar registros" height="16" width="16" border="0" /><br />lista de identificaciones</a></li>
+		<li><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=add_new_form&table=view_normal_identifications&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_edit.png" alt="agregar registro" height="16" width="16" border="0" /><br />agregar nueva identificación</a></li>
+	</TMPL_IF>
+	<TMPL_IF NAME="REFERENCES_LIST">
+	<!-- in case at least one reference is present, local modifications menu appear there -->
+	<TMPL_ELSE>
+		<li><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=add_new_form&table=view_assignation_reference&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_edit.png" alt="agregar registro" height="16" width="16" border="0" /><br />agregar nueva referencia</a>&nbsp;</li>
+	</TMPL_IF>
+	<TMPL_IF NAME="AREAS_LIST">
+	<!-- in case at least one area is present, local modifications menu appear there -->
+	<TMPL_ELSE>
+		<li><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=add_new_form&table=view_assignation_named_area&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_edit.png" alt="agregar registro" height="16" width="16" border="0" /><br />agregar nueva unidad geográfica</a></li>
+	</TMPL_IF>
+	</ul>
+	</div>
+	</td>
+</tr>
+</table>

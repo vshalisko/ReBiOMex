@@ -1,0 +1,130 @@
+<TMPL_VAR NAME="STRING_TEST">
+<!-- caller script <TMPL_VAR NAME="SCRIPT_NAME"> -->
+
+<h2>Interface de herramientas de investigador
+<TMPL_INCLUDE NAME="ibug_capture_headers.tmpl">
+</h2>
+
+<TMPL_IF NAME="TABLE_SELECT_OUTPUT">
+<h2>Capturar nuevo registro (wizard)</h2>
+<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_1">
+<img src="../graphics/icon_wizard_step_1.png" alt="" height="80" width="119" border="0" />
+</a>
+<img src="../graphics/icon_wizard_step_2_passive.png" alt="" height="80" width="119" border="0" />
+<img src="../graphics/icon_wizard_step_3_passive.png" alt="" height="80" width="119" border="0" />
+<img src="../graphics/icon_wizard_step_4_passive.png" alt="" height="80" width="119" border="0" />
+<img src="../graphics/icon_wizard_step_5_passive.png" alt="" height="80" width="119" border="0" />
+</TMPL_IF>
+
+<TMPL_IF NAME="WIZARD_CAPTURE">
+<TMPL_INCLUDE NAME="ibug_capture_wizard.tmpl">
+</TMPL_IF>
+
+<TMPL_IF NAME="TABLE_SELECT_OUTPUT">
+
+<!-- table selector -->
+
+<h2>Agregar nueva información a evento de colecta capturado</h2>
+
+
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen&action=add_new_form">
+		<img src="../graphics/icon_actions_add_specimen.png" alt="" height="80" width="119" border="0" />
+		</a>
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_normal_identifications&action=add_new_form">
+		<img src="../graphics/icon_actions_add_identification.png" alt="" height="80" width="119" border="0" />
+		</a>
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_assignation_reference&action=add_new_form">
+		<img src="../graphics/icon_actions_add_reference.png" alt="" height="80" width="119" border="0" />
+		</a>
+	</p>
+
+
+<h2>Agregar nueva información a especimen capturado</h2>
+
+
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen_images&action=add_new_form">
+		<img src="../graphics/icon_actions_add_image.png" alt="" height="80" width="119" border="0" />
+		</a>
+	</p>
+
+
+<table width="100%">
+<tr height="20px"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+<tr height="20px"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td><h2>Trabajar con registros existientes</h2></td><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+<tr>
+<td width="45%" valign="top">
+
+	<h2>Registros de colecta, de identificación, de especímen</h2>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_unit_collector">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Eventos de colecta - registros numericos</b></a><br />(consulta y comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_unit_collector_full">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Eventos de colecta - registros de localidad</b></a><br />(consulta, modificación y comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Especimenes en herbarios - simple</b></a><br />(consulta, modificación y comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_normal_identifications">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Eventos de identificación de los ejemplares</b></a><br />(consulta, modificación de detalles del evento de identificación, comentarios y asignación de referencias)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen_full">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;Especimenes en herbarios - completo</a><br />(consulta, modificación, asignación del estatus de ejemplar tipo y comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_type_identifications">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;Eventos de descripción de los ejemplares tipo</a><br />(consulta, modificación de detalles de descripción, comentarios y asignación de referencias)
+	</p>
+
+</td>
+<td width="10%">&nbsp;</td>
+<td width="45%" valign="top">
+
+	<h2>Registros auxiliares</h2>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_species">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Nombres de especies y taxa infraespecifica</b></a><br />(consulta, comentarios y asignación de referencias)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_assignation_reference">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Referencias bibliográficas (asignación)</b></a><br />(referencias bibliograficas de registros de colecta, conslta, modificación, comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_reference">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Referencias bibliográficas (definición)</b></a><br />(consulta, modificación, comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen_images">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Imagenes de los especímenes</b></a><br />(asignación, modificación, comentarios)
+	</p>
+
+	<p>&nbsp;</p>
+<!--
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_assignation_named_area">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;view_assignation_named_area</a><br />(unidades geograficos: otros unidades con nombre) - obsoleto
+	</p>
+
+-->
+
+</td>
+</tr>
+
+<tr height="30px">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+
+</table>
+<TMPL_ELSE>
+	<TMPL_INCLUDE NAME="ibug_capture_elements.tmpl">
+</TMPL_IF>

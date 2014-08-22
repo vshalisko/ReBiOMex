@@ -1,0 +1,19 @@
+<TMPL_IF NAME="NO_MATCH">
+	<div class="error">
+	<b>Los registros solicitados no fueron encontrados en la base de datos</b>
+	</div>
+	<div class="error">
+	<TMPL_IF NAME="SEARCH_PARAM">
+		Parametros de búsqueda:
+		<TMPL_LOOP NAME="SEARCH_PARAM">
+			<TMPL_VAR NAME="PARAMETER"> = &quot;<TMPL_VAR NAME="VALUE">&quot;
+		</TMPL_LOOP>
+	</TMPL_IF>
+	<TMPL_IF NAME="UNIT_ID">
+		unit_id = &quot;<TMPL_VAR NAME="UNIT_ID">&quot;
+	</TMPL_IF>
+	<TMPL_IF NAME="IDENTIFICATION_ID">
+		identification_id = &quot;<TMPL_VAR NAME="IDENTIFICATION_ID">&quot;
+	</TMPL_IF>
+	</div>
+</TMPL_IF>

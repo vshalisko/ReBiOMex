@@ -1,0 +1,522 @@
+BODY  { background-color: #FFFFFF; color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 12px; }
+/* #669966, #C0E59A */
+
+/* hovers */
+A { text-decoration: none; color: #000080; }
+A:hover { text-decoration: underline; color: #6A5ACD; }
+
+/* text */
+h2 {font-size: 16px; font-weight: bold;}
+h3 {font-size: 14px; font-weight: bold;}
+p {font-size: 12px;}
+.heading {font-size: larger; font-weight: bold;}
+.subheading {font-weight: bold;}
+
+/* header & footer */
+.logon {color: #000080; font-size: 13px;}
+
+/* menus */
+.title_box_menu {
+width:800px;
+height: 19px;
+padding:0px;
+border:1px solid #669966;
+margin:0px auto 2px auto;
+background-color: #669966;
+}
+.menu {
+font-size: 12px;
+}
+.menu ul{
+margin: 0;
+padding: 0;
+margin-bottom: 1px;
+float: left;
+font: bold 100% arial;
+width: 100%;
+background-color: #669966;
+}
+.menu ul li{
+display: inline;
+}
+.menu ul li a{
+float: left;
+color: black;
+padding: 2px 12px;
+text-decoration: none;
+background: transparent url(graphics/vertical.gif) center right no-repeat;
+}
+.menu ul li a:visited{
+color: black;
+}
+.menu ul li a:hover{
+color: #666666;
+background-color: white;
+text-decoration: none;
+}
+.menu ul li a:active{
+color: black;
+}
+.menu_left_margen {
+  margin-left: 5em;
+}
+.menu_special {
+  margin-left: 3em;
+  text-decoration: underline;
+}
+
+.local_menu {font-size: 12px;}
+.local_menu ul{
+margin: 0;
+padding: 0;
+margin-bottom: 1px;
+float: left;
+font: bold 100% arial;
+width: 100%;
+background-color: #669966;
+}
+.local_menu ul li{
+display: inline;
+}
+.local_menu ul li a{
+float: left;
+color: black;
+padding: 2px 12px;
+text-decoration: none;
+background: transparent url(graphics/vertical.gif) center right no-repeat;
+border: solid #669966 1px;
+}
+.local_menu ul li a:visited{
+color: black;
+}
+.local_menu ul li a:hover{
+color: #666666;
+background-color: white;
+text-decoration: none;
+}
+.local_menu ul li a:active{
+color: black;
+}
+.local_menu ul li a img{
+margin: 0px 5px 0px 0px;
+border: 0px;
+vertical-align: top;
+}
+
+.fixed_width_menu {font-size: 10px}
+.fixed_width_menu ul{
+margin: 0;
+padding: 0;
+margin-bottom: 1px;
+float: left;
+font: bold 100% arial;
+width: 100%;
+background-color: #669966;
+}
+.fixed_width_menu ul li{
+display: inline;
+float: center;
+}
+.fixed_width_menu ul li a{
+width: 70px;
+height: 60px;
+float: left;
+color: black;
+padding: 2px 12px;
+text-decoration: none;
+background: transparent url(graphics/vertical_58.gif) center right no-repeat;
+border: solid #669966 1px;
+}
+.fixed_width_menu ul li a:visited{
+color: black;
+}
+.fixed_width_menu ul li a:hover{
+color: #666666;
+background-color: white;
+text-decoration: none;
+}
+.fixed_width_menu ul li a:active{
+color: black;
+}
+.fixed_width_menu ul li a img{
+margin: 0px 5px 0px 0px;
+border: 0px;
+vertical-align: top;
+}
+
+/* unit */
+.unit {font-size: 14px;}
+.unit_p { margin: 0 25px 20px; }
+.unit_id {font-size: 10px; margin-left: -25px;}
+.taxon1 {font-size: 18px; margin-left: -25px;}
+.familia {font-size: 18px; margin-top: 5px;}
+
+.unit ul { display: inline; }
+
+.collecting {font-size: 14px;}
+.identification {font-size: 14px;}
+.project {font-size: 10px}
+.locality {font-size: 14px;}
+.ecology {font-size: 14px;}
+.observations {font-size: 14px;}
+.comment {font-size: 12px;}
+.type {font-weight: bold;}
+
+.areas_list {font-size: 12px; margin-top: 30px; margin-bottom: 30px;}
+.areas_list_li {font-size: 11px; margin: 4px 25px 0px 0px; width: 350px; padding-top: 4px; border-top: 1px dotted gray;}
+.areas_list h4 {font-size: 12px;}
+.references_list {font-size: 12px; margin-top: 30px; margin-bottom: 30px;}
+.references_list_li {font-size: 14px; margin: 4px 25px 0px 0px; width: 600px; padding-top: 4px; border-top: 1px dotted gray;}
+.references_list h4 {font-size: 16px;}
+.identification_list {font-size: 12px; margin-top: 30px;}
+.identification_list_li {font-size: 14px; margin: 4px 25px 0px 0px; width: 600px; padding-top: 4px; border-top: 1px dotted gray;}
+.identification_list h4 {font-size: 16px;}
+.identification_actions { float: right; width: 20px; }
+.specimen_list {font-size: 12px; margin-top: 30px;}
+.specimen_list_li {font-size: 14px; margin: 4px 25px 0px 0px; width: 450px; padding-top: 4px; border-top: 1px dotted gray;}
+.specimen_list h4 {font-size: 16px;}
+.specimen_actions { float: right; }
+.specimen_images { float: left; position: relative; bottom:25px; left:475px; margin: 10px 0px 30px 0px }
+.status_list {font-size: 12px; margin-top: 30px;}
+.status_list_li {font-size: 14px; margin: 4px 25px 0px 0px; width: 550px; padding-top: 4px; border-top: 1px dotted gray;}
+.status_list h4 {font-size: 16px;}
+
+
+
+
+.identification_menu {margin: 0 0px 10px 25px; }
+.specimen_menu {margin: 0 0px 10px 25px; }
+.areas_menu {margin: 0 0px 10px 25px; }
+.references_menu {margin: 0 0px 10px 25px; }
+.register_menu {margin: 0 0px 10px 25px; font-size: 10px;}
+.bottom_menu {font-size: 11px;  margin-top: 20px;}
+
+.simbology {font-size: 11px; margin-top: 30px;}
+.credits {font-size: 11px; margin-top: 30px; font-weight: bold;}
+
+
+/* error messages */
+.error {font-size: 14px; margin-top: 5px; color: red;}
+.bottom_error {font-size: 10px; margin-top: 5px; color: red;}
+.form_error {font-size: 10px; margin-top: 5px; margin-left: 200px; color: red;}
+.ajax_form_error {font-size: 10px; margin-top: 15px; color: red;}
+
+/* colors */
+.red {color: red;}
+.blue {color: blue;}
+.xml_code {color: gray;}
+
+.prevnext {font-size: 14px; margin-bottom: 15px; margin-top: 15px;}
+.table_legend {font-size: 10px; margin-bottom: 15px;}
+.reference_string {font-size: 16px;}
+.reference_button {font-size: 12px; margin-left: 15px;}
+.table_value {font-size: 16px;}
+
+/* taxonomy */
+.taxon_regnum {font-size: 16px; margin-top: 15px; margin-left: 0px; margin-bottom: 2px;}
+.taxon_phylum {font-size: 16px; margin-top: 15px; margin-left: 20px; margin-bottom: 2px;}
+.taxon_classis {font-size: 16px; margin-top: 15px; margin-left: 40px; margin-bottom: 2px;}
+.taxon_ordo {font-size: 16px; margin-top: 15px; margin-left: 60px; margin-bottom: 2px;}
+.taxon_familia {font-size: 16px; margin-top: 15px; margin-left: 80px; margin-bottom: 2px;}
+.taxon_genus {font-size: 16px; margin-top: 15px; margin-left: 100px; margin-bottom: 2px;}
+.taxon_subgeneric {font-size: 16px; margin-top: 15px; margin-left: 120px; margin-bottom: 2px;}
+.taxon_list_view {font-size: 16px; margin-top: 15px; margin-left: 40px; margin-bottom: 2px;}
+.taxonomy_button {position: relative; margin-left: 50px;}
+.taxonomy_space {position: relative; margin-left: 10px; margin-right: 10px;}
+.taxon_status_list {font-size: 14px; margin-top: 15px; margin-left: 120px;}
+.taxonomy_note {font-size: 11px; margin: 0px 0px 0px 60px; }
+
+.reference_button {margin-left: 10px;}
+.form_floating_bracket {float: left;}
+.note {font-size: 11px; margin-left: 10px; margin-top: 15px;}
+
+
+
+/* main_list etiquetes_list */
+.main_list {font-size: 14px;}
+.main_list_title {font-size: 18px; margin-top: 15px;}
+.list_unit_link {font-size: 10px;}
+.list_taxon_line {margin-top: 10px;}
+.list_author {font-size: 14px; margin-top: 5px;}
+.list_lower_taxon {font-size: 14px; margin-top: 5px; font-weight: bold; font-style: italic;}
+.list_collecting_details {font-size: 12px; margin-top: 2px;}
+.list_collector {font-style: italic;}
+.list_familia {font-size: 14px; margin-top: 5px; font-weight: bold;}
+.list_common_name {font-size: 12px; margin-top: 2px;}
+.list_specimen {font-size: 12px; margin-top: 2px;}
+.records_found {font-size: 18px;}
+.etuquetes_number {font-size: 14px; margin-top: 0px; position: relative; bottom:38px; left: 450px}
+.canasta_actions {font-size: 12px; margin-top: 0px; position: relative; bottom:32px; left: 450px}
+
+/* actions */
+
+.actions_main p {font-size: 16px;}
+
+/* forms */
+.form_logon {font-size: 14px; margin-top: 2px; margin-bottom: 2px;}
+legend {padding: 2px;}
+label {font-size: 12px; text-align: right; display: block; margin-right: 10px; margin-top: 10px; position: relative; width: 200px; float: left;}
+input {margin-top: 10px;}
+.formbutton {margin-top: 10px; padding: 1px 2px; width: 100px;}
+.searchbutton {padding: 1px 2px;width: 70px; margin-left: 210px; margin-top: 10px;}
+input.problem {border: solid 4px red}
+textarea.problem {border: solid 4px red}
+
+
+select.problem {background-color: #FF3333}
+option.form_option_cached {background-color: lightyellow;}
+option.form_option_missed {background-color: #FF3333;}
+option.form_option_actual {background-color: lightgreen;}
+
+.mainform p{
+  width: 600px;
+  clear: left;
+  margin: 0;
+  padding: 5px 0 8px 0;
+  padding-left: 10px;
+  height: 1%;
+}
+.mainform label{
+  font-size: 12px; 
+  font-weight: normal;
+  float: left;
+  margin-right: 10px; 
+  margin-top: 5px; 
+  text-align: right; 
+  position: relative; 
+  display: block; 
+  width: 200px;
+}
+.mainform legend{
+  font-size: 14px; 
+}
+.mainform_entry{
+	margin-top: 10px; padding: 0px;
+}
+
+
+.modifyform p{
+  width: 1000px;
+  clear: left;
+  margin: 0;
+  padding: 5px 0 8px 0;
+  padding-left: 10px;
+  border-bottom: 1px dashed gray;
+  height: 1%;
+}
+.modifyform input {
+margin-top: 0px;
+}
+.modifyform label{
+  font-size: 12px; 
+  font-weight: bold;
+  float: left;
+  margin-right: 10px; 
+  margin-top: 0px;
+  text-align: right; 
+  position: relative; 
+  display: block; 
+  width: 200px;
+}
+.modifyform legend{
+  font-size: 14px; 
+}
+
+.searchform p{
+  width: 600px;
+  clear: left;
+  margin: 0;
+  padding: 5px 0 8px 0;
+  padding-left: 10px;
+  height: 1%;
+}
+.searchform label{
+  font-size: 12px; 
+  font-weight: bold;
+  float: left;
+  margin-right: 10px; 
+  text-align: right; 
+  position: relative; 
+  display: block; 
+  width: 200px;
+}
+.searchform legend{
+  font-size: 14px; 
+}
+
+/* image */
+.thumbnail{
+z-index: 0;
+}
+.thumbnail img{
+border: 1px solid gray;
+}
+.thumbnail:hover img{
+border: 1px solid #334B33;
+}
+.thumbnail:hover{
+background-color: transparent;
+z-index: 50;
+}
+.thumbnail span{ /*CSS for enlarged image*/
+position: absolute;
+background-color: lightyellow;
+padding: 5px;
+left: -1000px;
+border: 1px dashed gray;
+visibility: hidden;
+color: black;
+text-decoration: none;
+width: 308px;
+}
+.thumbnail span img{ /*CSS for enlarged image*/
+border-width: 0;
+padding: 2px;
+}
+.thumbnail:hover span{ /*CSS for enlarged image on hover*/
+visibility: visible;
+top: -200px;
+left: 200px; /*position where enlarged image should offset horizontally */
+}
+
+
+
+table.style1 {
+  border-width: 3px;
+  border-spacing: ;
+  border-style: dashed;
+  border-color: green;
+  border-collapse: separate;
+  background-color: white;
+}
+table.style1 th {
+  border-width: 1px;
+  padding: 3px;
+  border-style: solid;
+  border-color: gray;
+  background-color: white;
+}
+table.style1 td {
+  border-width: 1px;
+  padding: 3px;
+  border-style: solid;
+  border-color: gray;
+  background-color: white;
+}
+table.style2 {
+  border-width: 0px;
+  border-spacing: ;
+  border-collapse: separate;
+  background-color: white;
+}
+table.style2 td {
+  border-width: 0px;
+  padding: 3px;
+  border-style: solid;
+  border-color: gray;
+  background-color: white;
+  height: 40px;
+  border-left: 7px solid white; /* I don't know why but padding-left: 10px does not work in IE */
+  border-bottom: 1px dashed gray;
+}
+table.style3 {
+  border-width: 3px;
+  border-spacing: ;
+  border-style: dashed;
+  border-color: green;
+  border-collapse: separate;
+  background-color: white;
+}
+table.style3 td {
+  padding: 0px;
+  margin: 0px;
+  background-color: white;
+}
+
+
+/* layers */
+.layout_box {
+width:800px;
+padding:0px;
+border:0px;
+margin:20px auto 0px auto;
+}
+
+.upper_box {
+width:800px;
+height: 30px;
+padding:0px;
+border:0px;
+margin:5px auto 0px auto;
+}
+.logon_box {
+float: right;
+padding:0px;
+border:0px;
+margin:0px;
+text-align:right;
+}
+.canasta_box {
+float: left;
+padding:0px;
+border:0px;
+margin:10px 0px 0px 0px;
+text-align:left;
+}
+.upper_banner_box {
+width:800px;
+padding:0px;
+border:1px solid #669966;
+margin:10px auto 0px auto;
+background-color: #334B33;
+}
+.main_content_box {
+width:800px;
+padding:0px;
+border:0px;
+margin:10px auto 10px auto;
+}
+.bottom_box {
+width:800px;
+height: 20px;
+padding:0px;
+border:1px solid #669966;
+margin:15px auto 2px auto;
+background-color: #669966;
+}
+.footer_box {
+padding:0px;
+border:0px;
+margin:4px 10px 2px 10px;
+color: black; 
+font-family: Verdana, Helvetica, Arial, sans-serif; 
+font-size: 10px;
+}
+
+.header_1 {
+margin:4px 30px 1px 125px; 
+color: white; 
+font-family: Verdana, Helvetica, Arial, sans-serif; 
+font-size: 24px; 
+font-variant: small-caps; 
+font-weight: bold;
+}
+
+.header_2 {
+margin: 0px auto 6px auto;
+width: 90%; 
+color: white; 
+font-family: Verdana, Helvetica, Arial, sans-serif; 
+font-size: 13px; 
+font-variant: small-caps; 
+font-weight: normal;
+}
+
+.header_3 {
+margin:0px auto 8px auto;
+width: 70%; 
+color: white; 
+font-family: Verdana, Helvetica, Arial, sans-serif; 
+font-size: 28px; 
+font-weight: normal;
+}

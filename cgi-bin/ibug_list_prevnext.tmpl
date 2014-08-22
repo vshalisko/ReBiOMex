@@ -1,0 +1,23 @@
+<!-- table prev/next -->
+<div class="prevnext">
+<TMPL_IF NAME="CURRENT_UNIQUE">
+Único registro fue encontrado
+<TMPL_ELSE>
+	<TMPL_IF NAME="NEXT">
+	<span id="record_number">
+	[mas de <TMPL_VAR NAME="CURRENT_HIGH">]
+	</span>
+	registros fueron encontrados de los cuales en la pagina actual aparecen registros de <TMPL_VAR NAME="CURRENT_LOW"> a <TMPL_VAR NAME="CURRENT_HIGH">
+	<!-- start of ajax aux code -->
+	<script type="text/javascript">xmlhttpGet("/cgi-bin/ajax.cgi?<TMPL_VAR NAME="SEARCH_STRING">mode=list_record_number","record_number");</script>
+	<!-- end of ajax aux code -->
+	<TMPL_ELSE>
+	<TMPL_VAR NAME="CURRENT_HIGH"> registros fueron encontrados de los cuales en la pagina actual aparecen registros de <TMPL_VAR NAME="CURRENT_LOW"> a <TMPL_VAR NAME="CURRENT_HIGH">
+	</TMPL_IF>
+<br />
+<TMPL_IF NAME="NO_PREVIOUS_FLAG"><TMPL_ELSE><a href="/cgi-bin/ibug_list.cgi?<TMPL_VAR NAME="SEARCH_STRING">position=<TMPL_VAR NAME="PREVIOUS">">&lt;&lt;&lt;revisar registros anteriores</a></TMPL_IF> 
+[<TMPL_VAR NAME="CURRENT_LOW">...<TMPL_VAR NAME="CURRENT_HIGH">]
+<TMPL_IF NAME="NEXT"><a href="/cgi-bin/ibug_list.cgi?<TMPL_VAR NAME="SEARCH_STRING">position=<TMPL_VAR NAME="NEXT">">revisar registros siguentes&gt;&gt;&gt;</a></TMPL_IF>
+</TMPL_IF>
+</div>
+<!-- end of table prev/next -->

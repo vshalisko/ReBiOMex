@@ -1,0 +1,21 @@
+<TMPL_IF NAME="TABLE_NAME">Tabla/vista actual &quot;<i><TMPL_VAR NAME="TABLE_NAME"></i>&quot;.
+	<TMPL_IF NAME="ACTION_SEARCH">Búsqueda de registro
+		<TMPL_IF NAME="SEARCH_REQUEST">con parametros:
+			<TMPL_LOOP NAME="SEARCH_REQUEST">
+			<br /><TMPL_VAR NAME="FIELD_FULL_NAME"> (<TMPL_VAR NAME="FIELD_NAME">) = &quot;<TMPL_VAR NAME="FIELD_VALUE">&quot;
+			</TMPL_LOOP>
+		</TMPL_IF>
+	</TMPL_IF>
+	<TMPL_IF NAME="ACTION_MODIFYFORM">Modificacion de registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_MODIFYSUCCESS">Registro modificado exitosamente</TMPL_IF>
+	<TMPL_IF NAME="ACTION_MODIFYPROBLEM">Problema en modificacion de registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_ADDFORM">Nuevo registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_ADDSUCCESS">Registro fue agregado exitosamente</TMPL_IF>
+	<TMPL_IF NAME="ACTION_ADDPROBLEM">Problema en proceso de agregar nuevo registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_DELETECONFIRM">Confirmar eliminacion de registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_DELETESUCCESS">Registro fue eliminado exitosamente</TMPL_IF>
+	<TMPL_IF NAME="ACTION_DELETEPROBLEM">Problema en eliminacion de registro - registro NO fue eliminado</TMPL_IF>
+	<TMPL_IF NAME="MENU_OUTPUT">Inicio</TMPL_IF>
+<TMPL_ELSE>
+	<TMPL_IF NAME="TABLE_SELECT_OUTPUT">MENU PRINCIPAL.</TMPL_IF>
+</TMPL_IF>

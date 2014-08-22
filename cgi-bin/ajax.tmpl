@@ -1,0 +1,49 @@
+<TMPL_VAR NAME="AJAX_RESULT">
+<TMPL_IF NAME="CONTROL_LIST">
+<select name="<TMPL_VAR NAME="FIELD_NAME">" <TMPL_IF NAME="PROBLEM">class="problem"</TMPL_IF> value="<TMPL_VAR NAME="FIELD_VALUE">" <TMPL_IF NAME="MULTIPLE">multiple size="6"</TMPL_IF>>
+	<option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+	<TMPL_LOOP NAME="CONTROL_LIST">
+		<TMPL_IF NAME="SELECTED">
+			<option selected value="<TMPL_VAR NAME="ID_VALUE">"
+			class="form_option_actual"
+			<TMPL_IF NAME="CACHED">class="form_option_cached"</TMPL_IF>>
+		<TMPL_ELSE>
+			<option value="<TMPL_VAR NAME="ID_VALUE">"
+			<TMPL_IF NAME="CACHED">class="form_option_cached"</TMPL_IF>>
+		</TMPL_IF>
+		<TMPL_IF NAME="VALUE">
+			<TMPL_IF NAME="CACHED">[reciente] &#151;&gt; </TMPL_IF>
+			<TMPL_VAR NAME="VALUE"> (ID:<TMPL_VAR NAME="ID_VALUE">)
+		<TMPL_ELSE>
+			<TMPL_IF NAME="CACHED">[reciente]&#151;&gt; </TMPL_IF>
+			<TMPL_IF NAME="ID_VALUE">(ID: <TMPL_VAR NAME="ID_VALUE">)<TMPL_ELSE>&nbsp;</TMPL_IF>
+		</TMPL_IF>
+		</option>
+	</TMPL_LOOP>
+	<TMPL_IF NAME="EMPTY_LIST">
+		<!-- <option value="" class="form_option_missed">no fue encontrado nada</option> -->
+	</TMPL_IF>
+</select>
+</TMPL_IF>
+<!--
+<TMPL_IF NAME="SQL_ERROR">
+<br /><span class="ajax_form_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />&nbsp;<TMPL_VAR NAME="SQL_ERROR"></span>
+</TMPL_IF>
+<TMPL_IF NAME="WARNING">
+<span class="ajax_form_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />&nbsp;<TMPL_VAR NAME="WARNING"></span>
+</TMPL_IF>
+-->
+<!--
+Following variables are essential to ensure template working:
+<TMPL_VAR NAME="CANASTA">
+<TMPL_VAR NAME="ETIQUETES_NUMBER">
+<TMPL_VAR NAME="USER_LOGIN">
+<TMPL_VAR NAME="USER_FULL_NAME">
+<TMPL_VAR NAME="USER_INSTITUTION">
+<TMPL_VAR NAME="USER_ACCESS">
+<TMPL_VAR NAME="ADMIN">
+<TMPL_VAR NAME="CURADOR">
+<TMPL_VAR NAME="INVESTIGADOR">
+<TMPL_VAR NAME="ESTUDIANTE">
+<TMPL_VAR NAME="SCRIPT_NAME">
+-->

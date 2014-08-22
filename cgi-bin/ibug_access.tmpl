@@ -1,0 +1,39 @@
+<TMPL_INCLUDE NAME="ibug_header.tmpl">
+
+<TMPL_IF NAME="ADMIN_INTERFACE">
+  <TMPL_IF NAME="ADMIN">
+    <!-- Interface de administrador -->
+    <TMPL_INCLUDE NAME="ibug_admin.tmpl">
+  <TMPL_ELSE>
+    <h2>Usuario <i><TMPL_VAR NAME="USER_LOGIN"></i> no tiene privilegios necesarios para acceder a interface de <i>administrador</i>.</h2>
+  </TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="CURADOR_INTERFACE">
+  <TMPL_IF NAME="CURADOR">
+    <!-- Interface de curador -->
+    <TMPL_INCLUDE NAME="ibug_curador.tmpl">
+  <TMPL_ELSE>
+    <h2>Usuario <i><TMPL_VAR NAME="USER_LOGIN"></i> no tiene privilegios necesarios para acceder a interface de <i>curador</i>.</h2>
+  </TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="INVESTIGADOR_INTERFACE">
+  <TMPL_IF NAME="INVESTIGADOR">
+    <!-- Interface de investigador -->
+   <TMPL_INCLUDE NAME="ibug_investigador.tmpl">
+  <TMPL_ELSE>
+    <h2>Usuario <i><TMPL_VAR NAME="USER_LOGIN"></i> no tiene privilegios necesarios para acceder a interface de <i>investigador</i>.</h2>
+  </TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="ESTUDIANTE_INTERFACE">
+  <TMPL_IF NAME="ESTUDIANTE">
+    <!-- Interface de estudiante -->
+
+  <TMPL_ELSE>
+    <h2>Usuario <i><TMPL_VAR NAME="USER_LOGIN"></i> no tiene privilegios necesarios para acceder a interface de <i>estudiante</i>.</h2>
+  </TMPL_IF>
+</TMPL_IF>
+
+<TMPL_INCLUDE NAME="ibug_footer.tmpl">

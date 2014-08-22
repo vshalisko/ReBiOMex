@@ -1,0 +1,274 @@
+<TMPL_VAR NAME="STRING_TEST">
+<!-- caller script <TMPL_VAR NAME="SCRIPT_NAME"> -->
+
+<h2>Interface de herramientas de curador<br />
+<TMPL_INCLUDE NAME="ibug_capture_headers.tmpl">
+</h2>
+
+<TMPL_IF NAME="TABLE_SELECT_OUTPUT">
+<h2>Capturar nuevo registro (wizard)</h2>
+<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_1">
+<img src="../graphics/icon_wizard_step_1.png" alt="" height="80" width="119" border="0" />
+</a>
+<img src="../graphics/icon_wizard_step_2_passive.png" alt="" height="80" width="119" border="0" />
+<img src="../graphics/icon_wizard_step_3_passive.png" alt="" height="80" width="119" border="0" />
+<img src="../graphics/icon_wizard_step_4_passive.png" alt="" height="80" width="119" border="0" />
+<img src="../graphics/icon_wizard_step_5_passive.png" alt="" height="80" width="119" border="0" />
+</TMPL_IF>
+
+<TMPL_IF NAME="WIZARD_CAPTURE">
+<TMPL_INCLUDE NAME="ibug_capture_wizard.tmpl">
+</TMPL_IF>
+
+
+
+<TMPL_IF NAME="TABLE_SELECT_OUTPUT">
+
+<!-- table selector -->
+
+<h2>Agregar nueva información a evento de colecta capturado</h2>
+
+
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen&action=add_new_form">
+		<img src="../graphics/icon_actions_add_specimen.png" alt="" height="80" width="119" border="0" />
+		</a>
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_normal_identifications&action=add_new_form">
+		<img src="../graphics/icon_actions_add_identification.png" alt="" height="80" width="119" border="0" />
+		</a>
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_assignation_reference&action=add_new_form">
+		<img src="../graphics/icon_actions_add_reference.png" alt="" height="80" width="119" border="0" />
+		</a>
+	</p>
+
+
+<h2>Agregar nueva información a especimen capturado</h2>
+
+
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen_images&action=add_new_form">
+		<img src="../graphics/icon_actions_add_image.png" alt="" height="80" width="119" border="0" />
+		</a>
+	</p>
+
+
+<!-- table selector -->
+<table width="100%">
+<tr>
+<td>
+<h2>MODIFICAR O CAPTURAR DATOS</h2>
+</td>
+</tr>
+
+<tr>
+<td width="45%" valign="top">
+
+	<h2>Registros principales</h2>
+	<div class="actions_main">
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_unit_collector_full">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Eventos de colecta - registro de localidad</b></a><br />(consulta y comentarios) - bajo construcción - 
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_unit_collector">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Eventos de colecta - registro numerico</b></a><br />(consulta y comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Especimenes en herbarios - simple</b></a><br />(consulta, modificación y comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_normal_identifications">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Eventos de identificación de los ejemplares</b></a><br />(consulta, modificación de detalles del evento de identificación, comentarios y asignación de referencias)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen_full">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;Especimenes en herbarios - completo</a><br />(consulta, modificación, asignación del estatus de ejemplar tipo y comentarios)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_type_identifications">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;Eventos de descripción de los ejemplares tipo</a><br />(consulta, modificación de detalles de descripción, comentarios y asignación de referencias)
+	</p>
+	</div>
+
+</td>
+<td width="10%">&nbsp;</td>
+<td width="45%" valign="top">
+
+	<h2>Datos de referencia</h2>
+	<div class="actions_main">
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_species">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Nombres de especies y taxa infraespecifica</b></a><br />(consulta, comentarios y asignación de referencias)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_assignation_named_area">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;view_assignation_named_area</a><br />(unidades geograficos: otros unidades con nombre) - obsoleto
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_assignation_reference">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;view_assignation_reference</a><br />(referencias bibliograficas)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen_images">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;view_specimen_images</a><br />(imagenes de los especímenes)
+	</p>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_reference">
+		<img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />
+		&nbsp;<b>Referencias bibliográficas</b></a><br />(consulta, comentarios)
+	</p>
+	</div>
+</td>
+</tr>
+
+<tr height="30px">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<h2>ACCESO DIRECTO A LAS TABLAS</h2>
+</td>
+</tr>
+
+<tr>
+<td width="45%" valign="top">
+  <h2>Tablas principales</h2>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=unit"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;unit</a><br />(defenicion de registros basados en eventos de colecta)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=specimen"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;specimen</a><br />(definicion del especímenes en colecciones científicas)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=identification"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;identification</a><br />(asignacion de identificaciones)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=assignation_reference"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;assignation_reference</a><br />(asignacion de referencias bibliográficas a registros de colecta)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=specimen_image"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;specimen_image</a><br />(asignacion de imagenes de especimen)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=assignation_named_area"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;assignation_named_areas</a><br />(asignacion de pertenencia unidades geograficas)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=subgeneric"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;subgeneric</a><br />(definicion de nombres científicos: taxa subgenerica)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=assignation_status"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;assignation_status</a><br />(asignacion de estatus de taxa subgenerica mencionado en documentos normativos)</p>
+  &nbsp;
+  -------- elementos bajo construccion ------
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table="><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;</a><br />(asignacion de imagenes a registro basado en evento de colecta)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table="><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;</a><br />(observaciones y analysis basados en los especimens)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table="><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;</a><br />(manejo simplificado de grupos de colectores y cientificos)</p>
+</td>
+<td width="10%">&nbsp;</td>
+<td width="45%" valign="top">
+  <h2>Tablas de referencia</h2>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=reference"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;reference</a><br />(asignacion de referencias a fuentes bibliograficos)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=publication"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;publication</a><br />(definicion de fuentes bibliograficos)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=herbarium"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;herbarium</a><br />(definicion de herbarios)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=institution"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;institution</a><br />(definicion de instituciones)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=teams"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;teams</a><br />(definicion grupos de los agentes colectores e identificadores)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=persons"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;persons</a><br />(definicion de las persons agentes colectores e identificadores)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=municipality"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;municipality</a><br />(definicion de unidades geograficos: municipios y estados)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=country"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;country</a><br />(definicion de unidades geograficos: paises y sus codigos)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=named_area"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;named_area</a><br />(definicion de unidades geograficos: otros unidades)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=regnum"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;regnum</a><br />(definicion de categorías taxonómicas: reinos)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=familia"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;familia</a><br />(definicion de categorías taxonómicas: familias, ordenes, clases, filos)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=genus"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;genus</a><br />(definicion de categorías taxonómicas: generos)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=author"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;author</a><br />(definicion de authores de grupos taxonómicos)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=vegetation"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;vegetation</a><br />(definicion de tipos de vegetación)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=project"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;project</a><br />(definicion de proyectos)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=method"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;method</a><br />(definicion de metodos de muestreo y de preservación)</p>
+  <p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=user"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;user</a><br />(lista de usuarios)</p>
+</td>
+</tr>
+
+</table>
+
+<div>
+<h2>Herramientas especiales (mucho cuidado!!!)</h2>
+
+	<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	<fieldset>
+	<legend>Regeneración de la tabla &quot;col_det_agent&quot; (solución temporal)</legend>
+        <input type="hidden" name="action" value="regeneration">
+        <input type="hidden" name="table" value="teams">	
+	<input type="submit" class="formbutton" value="Regenerar tabla" />
+	</fieldset>
+	</form>
+
+	<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	<fieldset>
+	<legend>Depuración de registros en la tabla &quot;subgeneric&quot; (bajo construcción)</legend>
+        <input type="hidden" name="action" value="depuration">
+        <input type="hidden" name="table" value="subgeneric">
+		<!-- ------------------------------ ajax form  --------------------------- -->
+			<div class="main_form">
+			<label for="depuration_subgeneric_lookup">Campo para busqueda (nombre cientifico)</label>
+			<input type="text" size="30" maxlength="100" alt="login" name="depuration_subgeneric_lookup" id="depuration_subgeneric_lookup" />
+			&nbsp;<a target="_blank" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_species"><img src="../graphics/icon_select.png" alt="revisar tabla de referencia" height="16" width="16" border="0" /></a>&nbsp;abrir tabla de referencia
+			</div>
+			<br />
+
+			<div class="main_form">
+			<label for="depuration_subgeneric_good_id">Registro correcto:</label>
+			<!-- ajax button -->
+			<img src="../graphics/icon_renew.png" alt="llenar control" height="16" width="16" border="0" 
+			onclick="xmlhttpGet('/cgi-bin/ajax.cgi?mode=get_control_select&search_string=' + depuration_subgeneric_lookup.value + '&field_name=depuration_subgeneric_good_id&table=view_species&id_column=subgeneric_id&column=scientific_name&actual_id=&extended_search=','depuration_subgeneric_good_id_box');"
+			/>&nbsp;
+			<!-- end of ajax button -->
+			<span id="depuration_subgeneric_good_id_box">
+			<!-- ajax controlled contents -->
+			<select name="depuration_subgeneric_good_id" style="width: 200px;"
+			value="" disabled="disabled">
+			<option selected value=""> </option>
+			</select>
+			<!-- end of ajax controlled contents -->
+			</span>
+			</div>
+			<br />
+
+			<div class="main_form">
+			<label for="depuration_subgeneric_bad_ids">Registros erroneos:</label>
+			<!-- ajax button -->
+			<img src="../graphics/icon_renew.png" alt="llenar control" height="16" width="16" border="0" 
+			onclick="xmlhttpGet('/cgi-bin/ajax.cgi?mode=get_control_select&search_string=' + depuration_subgeneric_lookup.value + '&field_name=depuration_subgeneric_bad_ids&table=view_species&id_column=subgeneric_id&column=scientific_name&actual_id=&multiple=1','depuration_subgeneric_bad_ids_box');"
+			/>&nbsp;
+			<!-- end of ajax button -->
+			<span id="depuration_subgeneric_bad_ids_box">
+			<!-- ajax controlled contents -->
+			<select name="depuration_subgeneric_bad_ids" style="width: 200px;"
+			value="" disabled="disabled" multiple size="6">
+			<option selected value=""> </option>
+			</select>
+			<!-- end of ajax controlled contents -->
+			</span>
+
+			</div>
+		<!-- ------------------------------ end of ajax form --------------------------- -->
+
+	<input type="submit" class="formbutton" value="Depurar" />
+	</fieldset>
+	</form>
+</div>
+
+<TMPL_ELSE>
+
+	<TMPL_IF NAME="ACTION_DEPURATION_REPORT">
+		<TMPL_IF NAME="ACTION_DEPURATION_PROBLEM">
+		<div class="heading">
+		<span class="error">Fue detectado un error con procedimiento de depuracion. Tablas no fueron modificadas.</span>
+		</div>.
+		<TMPL_ELSE>
+		<div class="heading">
+		Fueron modificados <TMPL_VAR NAME="DEPURATION_RECORD_COUNT"> registros en tabla &quot;<TMPL_VAR NAME="DEPURATION_RECORD_TABLE">&quot;. 
+		Fueron eliminados <TMPL_VAR NAME="DEPURATION_DELETE_COUNT"> registros en tabla &quot;<TMPL_VAR NAME="DEPURATION_DELETE_TABLE">&quot;.
+		</div>.
+		</TMPL_IF>
+	</TMPL_IF>
+	
+	<TMPL_IF NAME="ACTION_REGENERATION_REPORT">
+		<TMPL_IF NAME="ACTION_REGENERATION_PROBLEM">
+		<div class="heading">
+		<span class="error">Ha ocurrido un error durante procedimiento de regeneración de la tabla <TMPL_VAR NAME="ACTION_REGENERATION_TABLE">. 
+		<br />Tabla contiene <TMPL_VAR NAME="ACTION_REGENERATION_RESULT"> registros.</span>
+		</div>.
+		<TMPL_ELSE>
+		<div class="heading">
+		Tabla <TMPL_VAR NAME="ACTION_REGENERATION_TABLE"> fue regenerada. 
+		<br />Nueva tabla contiene <TMPL_VAR NAME="ACTION_REGENERATION_RESULT"> registros.
+		</div>.
+		</TMPL_IF>
+	</TMPL_IF>
+
+	<TMPL_INCLUDE NAME="ibug_capture_elements.tmpl">
+</TMPL_IF>
+

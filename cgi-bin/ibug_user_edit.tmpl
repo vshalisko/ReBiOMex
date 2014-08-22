@@ -1,0 +1,118 @@
+<h2>
+<TMPL_IF NAME="TABLE_NAME">Tabla &quot;<i><TMPL_VAR NAME="TABLE_NAME"></i>&quot;.
+	<TMPL_IF NAME="ACTION_SEARCH">Búsqueda en tabla
+		<TMPL_IF NAME="SEARCH_REQUEST">con parametros:
+				<TMPL_LOOP NAME="SEARCH_REQUEST">
+					<br /><TMPL_VAR NAME="FIELD_FULL_NAME"> (<TMPL_VAR NAME="FIELD_NAME">) = &quot;<TMPL_VAR NAME="FIELD_VALUE">&quot;
+				</TMPL_LOOP>
+		</TMPL_IF>
+	</TMPL_IF>
+	<TMPL_IF NAME="ACTION_MODIFYFORM">Modificacion de registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_MODIFYSUCCESS">Registro modificado exitosamente</TMPL_IF>
+	<TMPL_IF NAME="ACTION_MODIFYPROBLEM">Problema en modificacion de registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_ADDFORM">Nuevo registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_ADDSUCCESS">Registro fue agregado exitosamente</TMPL_IF>
+	<TMPL_IF NAME="ACTION_ADDPROBLEM">Problema en proceso de agregar nuevo registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_DELETECONFIRM">Confirmar eliminacion de registro</TMPL_IF>
+	<TMPL_IF NAME="ACTION_DELETESUCCESS">Registro fue eliminado exitosamente</TMPL_IF>
+	<TMPL_IF NAME="ACTION_DELETEPROBLEM">Problema en eliminacion de registro - registro NO fue eliminado</TMPL_IF>
+	<TMPL_IF NAME="MENU_OUTPUT">Menu de trabajo con la tabla</TMPL_IF>
+<TMPL_ELSE>
+	<TMPL_IF NAME="TABLE_SELECT_OUTPUT">Menu de seleccion de tablas</TMPL_IF>
+</TMPL_IF>
+.</h2>
+
+<TMPL_IF NAME="TABLE_SELECT_OUTPUT">
+<!-- table selector -->
+	<h2>Tablas</h2>
+	<p><a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?users=1&table=view_user"><img src="../graphics/icon_select.png" alt="trabajar con tabla" height="16" width="16" border="0" />&nbsp;user</a><br />(lista de usuarios)</p>
+</TMPL_IF>
+
+
+
+<TMPL_INCLUDE NAME="ibug_table_processing.tmpl">
+
+<TMPL_IF NAME="TABLE_NO_MATCH">
+    <div class="heading">No fueron encontrados resultados con parametros de busqueda especificados</div>
+</TMPL_IF>
+
+<TMPL_IF NAME="ACTION_DELETECONFIRM">
+			<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+			     <div>
+				<label for="submit">Eliminar usuario seleccionado</label>
+				<input type="hidden" name="action" value="eliminate">
+				<input type="hidden" name="confirmed" value="1">
+				<input type="hidden" name="users" value="1" />
+				<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+				<input type="hidden" name="s_id" value="<TMPL_VAR NAME="S_ID">">
+				<input type="submit" class="formbutton" value="Eliminar" />
+			    </div>
+			 </form>
+			<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+			     <div>
+				<label for="submit">Cancelar la eliminacion del usuario</label>
+				<input type="hidden" name="action" value="search">
+				<input type="hidden" name="users" value="1" />
+				<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+				<input type="hidden" name="s_id" value="<TMPL_VAR NAME="S_ID">">
+				<input type="submit" class="formbutton" value="Cancelar" />
+			    </div>
+			 </form>
+</TMPL_IF>
+
+<TMPL_IF NAME="ACTION_DELETESUCCESS">
+	<div class="heading">ID de usuario eliminado &quot;<TMPL_VAR NAME="S_ID">&quot;</div>.
+</TMPL_IF>
+
+<TMPL_IF NAME="ACTION_DELETEPROBLEM">
+	<div class="heading"><span class="error">Usuario con ID &quot;<TMPL_VAR NAME="S_ID">&quot; NO fue eleminado!</span></div>
+            <TMPL_IF NAME="DELETE_REFERENCE_PROBLEM">
+            <div class="heading"><span class="error">Intento de eliminacion del usuario fue rechazado por presencia de referencias al registro en otras tablas.</span></div>
+            </TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="ACTION_MODIFYPROBLEM">
+	<div class="heading"><span class="error">Usuario con ID &quot;<TMPL_VAR NAME="S_ID">&quot; NO fue modificado!</span></div>
+            <TMPL_IF NAME="MODIFY_REFERENCE_PROBLEM">
+            <div class="heading"><span class="error">Intento de modificación del usuario fue rechazado por ausencia del registro de referencia externa correspondiente para uno de los campos.</span></div>
+            </TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="ACTION_ADDPROBLEM">
+	<div class="heading"><span class="error">Registro NO fue agregado!</span></div>
+            <TMPL_IF NAME="ADD_REFERENCE_PROBLEM">
+            <div class="heading"><span class="error">Intento de agregar registro a la tabla fue rechazado por ausencia del registro de referencia externa correspondiente para uno de los campos.</span></div>
+            </TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="TABLE_NAME">
+	<TMPL_IF NAME="MENU_OUTPUT">
+	<TMPL_ELSE>
+		<TMPL_IF NAME="FORM">
+		<TMPL_ELSE>
+		<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+		     <div>
+			<label for="submit">Registrar nuevo usuario</label>
+			<input type="hidden" name="action" value="add_new_form">
+			<input type="hidden" name="users" value="1" />
+			<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+			<input type="submit" class="formbutton" value="Agregar" />
+		    </div>
+		</form>
+		</TMPL_IF>
+	<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	     <div>
+		<label for="submit">Regresar a menu inicial de manejo de las cuentas de los usuarios</label>
+		<input type="hidden" name="users" value="1" />
+		<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+		<input type="submit" class="formbutton" value="Regresar" />
+	    </div> 
+	</form>
+	<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	     <div>
+		<label for="submit">Regresar a menu inicial de ADMINISTRADOR</label>
+		<input type="submit" class="formbutton" value="Regresar" />
+	    </div> 
+	</form>
+	</TMPL_IF>
+</TMPL_IF>

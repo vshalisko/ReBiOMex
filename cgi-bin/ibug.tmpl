@@ -1,0 +1,51 @@
+<TMPL_INCLUDE NAME="ibug_header.tmpl">
+
+
+<TMPL_IF NAME="UNIT_REQUEST">
+	<TMPL_INCLUDE NAME="ibug_unit_request.tmpl">
+<TMPL_ELSE>
+	<TMPL_IF NAME="UNIT_OUT">
+		<TMPL_INCLUDE NAME="ibug_unit_out.tmpl">
+        <TMPL_ELSE>
+		<TMPL_IF NAME="LIST_REQUEST">
+			<TMPL_INCLUDE NAME="ibug_list_request.tmpl">
+	          <TMPL_ELSE>
+			<TMPL_IF NAME="LIST_OUT">
+				<TMPL_INCLUDE NAME="ibug_list_out.tmpl">
+			<TMPL_ELSE>
+
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="TAXONOMY">
+	<TMPL_INCLUDE NAME="ibug_taxonomy.tmpl">
+</TMPL_IF>
+
+<TMPL_IF NAME="ABOUT">
+	<TMPL_INCLUDE NAME="ibug_about.tmpl">
+</TMPL_IF>
+
+<TMPL_IF NAME="HELP">
+	<TMPL_INCLUDE NAME="ibug_help.tmpl">
+</TMPL_IF>
+
+<TMPL_IF NAME="LOGIN">
+	<TMPL_INCLUDE NAME="ibug_login.tmpl">
+</TMPL_IF>
+
+<TMPL_IF NAME="NO_MATCH">
+	<TMPL_INCLUDE NAME="ibug_no_match.tmpl">
+</TMPL_IF>
+
+<TMPL_IF NAME="XML_EXPORT">
+	<TMPL_INCLUDE NAME="ibug_xml.tmpl">
+</TMPL_IF>
+
+<TMPL_IF NAME="CANASTA_CONTENTS">
+	<TMPL_INCLUDE NAME="canasta.tmpl">
+</TMPL_IF>
+
+
+<TMPL_INCLUDE NAME="ibug_footer.tmpl">

@@ -1,0 +1,87 @@
+<table width="100%">
+  <tr><td width="200px">&nbsp;
+  </td><td width="400px">
+  <form action="/cgi-bin/ibug_list.cgi" method="post">
+    <fieldset>
+    <legend>Buscar especímenes por</legend>
+    <div class="main_form">
+      <label for="collecting_date">Nombre científico o nombre común:</label>
+      <input type="text" size="15" maxlength="100" alt="nombre cientifico o nombre común" name="substring" id="substring" />
+       <input type="submit" class="searchbutton" value="Buscar" />
+    </div>
+    <div class="note">* Es posible utilizar comodínes % y _. <a href="/cgi-bin/ibug.cgi?help=1#comodines" target="_blank">ayuda <img src="../graphics/icon_external.png" height="10" width="10" border="0" /></a></div>
+    </fieldset>
+  </form>
+  </td><td width="200px">&nbsp;
+  </td></tr>
+</table>
+
+
+<table width="100%">
+  <tr><td width="200px">&nbsp;
+  </td><td width="400px">
+  <form action="/cgi-bin/ibug_list.cgi" method="post">
+    <fieldset>
+    <legend>Buscar especímenes por</legend>
+    <div class="mainform">
+	<div class="mainform_entry">
+		<label for="family">Familia:</label>
+		<input type="text" size="15" maxlength="40" alt="familia" name="family" id="family" />
+	</div>
+	<div class="mainform_entry">
+		<label for="genus">Genero:</label>
+		<input type="text" size="15" maxlength="40" alt="genero" name="genus" id="genus" />
+	</div>
+	<div class="mainform_entry">
+		<label for="specie">Epiteto específico:</label>
+		<input type="text" size="15" maxlength="40" alt="especie" name="specie" id="specie" />
+	</div>
+	<div class="mainform_entry">
+		<label for="common">Nombre común:</label>
+		<input type="text" size="15" maxlength="40" alt="nombre común" name="common" id="common" />
+	</div>
+	<div class="mainform_entry">
+		<label for="municipality">Municipio:</label>
+		<input type="text" size="15" maxlength="100" alt="municipio" name="municipality" id="municipality" />
+	</div>
+	<div class="mainform_entry">
+		<label for="state">Estado:</label>
+		<input type="text" size="15" maxlength="100" alt="state" name="state" id="state" />
+	</div>
+	<div class="mainform_entry">
+		<label for="herbarium">Colección científica<br />(e.&nbsp;g. abreviación del herbario):</label>
+		<input type="text" size="15" maxlength="100" alt="estatus de tipo" name="herbarium" id="herbarium" />
+	</div>
+	<div class="mainform_entry">
+		<label for="collector">Nombre del colector principal:</label>
+		<input type="text" size="15" maxlength="100" alt="nombre de colector" name="collector" id="collector" />
+	</div>
+	<div class="mainform_entry">
+		<label for="field_number">Número de colecta:</label>
+		<input type="text" size="15" maxlength="10" alt="numero de colecta" name="field_number" id="field_number" />
+	</div>
+	<div class="mainform_entry">
+		<label for="collecting_date">Fecha de colecta (dd/mm/aaaa):</label>
+		<input type="text" size="15" maxlength="10" alt="fecha de colecta" name="collecting_date" id="collecting_date" />
+	</div>
+	<div class="mainform_entry">
+		<label for="type_status">Buscar solo ejemplares tipo (bajo construcción):</label>
+		<input type="checkbox" alt="estatus de tipo" name="type_status" id="type_status" />
+	</div>
+	<div class="mainform_entry">
+		<label for="status_only">Buscar solo taxa con estatus de protección:</label>
+		<input type="checkbox" alt="taxa con estatus" name="status_only" id="status_only" />
+	</div>
+	<div class="mainform_entry">
+		<label for="incorporated_only">Buscar solo incorporados a colección cientifica:</label>
+		<input type="checkbox" alt="registros incorporados" name="incorporated_only" id="incorporated_only" checked="checked" />
+	</div>
+       <input type="submit" class="searchbutton" value="Buscar" />
+    </div>
+    <div class="note">* Es posible utilizar comodínes % y _. <a href="/cgi-bin/ibug.cgi?help=1#comodines" target="_blank">ayuda <img src="../graphics/icon_external.png" height="10" width="10" border="0" /></a></div>
+    </fieldset>
+  </form>
+  </td><td width="200px">&nbsp;
+  </td></tr>
+</table>
+

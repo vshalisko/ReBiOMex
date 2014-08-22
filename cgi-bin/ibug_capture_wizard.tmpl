@@ -1,0 +1,201 @@
+<TMPL_IF NAME="FORM_OUTPUT">
+	<h2>
+	<TMPL_IF NAME="S_UNIT">
+		Captura de información asociada con registro de colecta (ID <TMPL_VAR NAME="S_UNIT">)
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			Captura de información asociada con registro de colecta (ID <TMPL_VAR NAME="LAST_S_ID">)
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				Captura de información asociada con registro de colecta (ID <TMPL_VAR NAME="S_ID">)
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+	</h2>
+</TMPL_IF>
+
+
+<TMPL_IF NAME="TABLE_SINGLE_LINE">
+	<h2>
+	<TMPL_IF NAME="S_UNIT">
+		Información asociada con registro de colecta (ID <TMPL_VAR NAME="S_UNIT">)
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			Información asociada con registro de colecta (ID <TMPL_VAR NAME="LAST_S_ID">)
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				Información asociada con registro de colecta (ID <TMPL_VAR NAME="S_ID">)
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+	<TMPL_IF NAME="S_UNIT">
+		<a href="/cgi-bin/ibug_unit.cgi?unit_id=<TMPL_VAR NAME="S_UNIT">" target="_blank">revisar registro <img src="../graphics/icon_external.png" height="10" width="10" border="0" /></a>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			<a href="/cgi-bin/ibug_unit.cgi?unit_id=<TMPL_VAR NAME="LAST_S_ID">" target="_blank">revisar registro <img src="../graphics/icon_external.png" height="10" width="10" border="0" /></a>
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				<a href="/cgi-bin/ibug_unit.cgi?unit_id=<TMPL_VAR NAME="S_ID">" target="_blank">revisar registro <img src="../graphics/icon_external.png" height="10" width="10" border="0" /></a>
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+	</h2>
+</TMPL_IF>
+
+
+<TMPL_IF NAME=WIZARD_CAPTURE_1>
+	<img src="../graphics/icon_wizard_step_1_active.png" alt="" height="80" width="119" border="0" />
+<TMPL_ELSE>
+	<TMPL_IF NAME="S_UNIT">
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_1&s_id=<TMPL_VAR NAME="S_UNIT">&s_unit=<TMPL_VAR NAME="S_UNIT">&action=modify_form">
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_1&s_id=<TMPL_VAR NAME="LAST_S_ID">&action=modify_form">
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_1&s_id=<TMPL_VAR NAME="S_ID">&action=modify_form">
+			<TMPL_ELSE>
+				<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_1">
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+	<img src="../graphics/icon_wizard_step_1.png" alt="" height="80" width="119" border="0" />
+	</a>
+</TMPL_IF>
+
+
+<TMPL_IF NAME=WIZARD_CAPTURE_2>
+	<img src="../graphics/icon_wizard_step_2_active.png" alt="" height="80" width="119" border="0" />
+<TMPL_ELSE>
+	<TMPL_IF NAME="S_UNIT">
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_2&s_id=<TMPL_VAR NAME="S_UNIT">&s_unit=<TMPL_VAR NAME="S_UNIT">&action=modify_form">
+		<img src="../graphics/icon_wizard_step_2.png" alt="" height="80" width="119" border="0" />
+		</a>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_2&s_id=<TMPL_VAR NAME="LAST_S_ID">&action=modify_form">
+			<img src="../graphics/icon_wizard_step_2.png" alt="" height="80" width="119" border="0" />
+			</a>
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_2&s_id=<TMPL_VAR NAME="S_ID">&action=modify_form">
+				<img src="../graphics/icon_wizard_step_2.png" alt="" height="80" width="119" border="0" />
+				</a>
+			<TMPL_ELSE>
+				<img src="../graphics/icon_wizard_step_2_passive.png" alt="" height="80" width="119" border="0" />
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME=WIZARD_CAPTURE_3>
+	<img src="../graphics/icon_wizard_step_3_active.png" alt="" height="80" width="119" border="0" />
+<TMPL_ELSE>
+	<TMPL_IF NAME="S_UNIT">
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_3&s_id=<TMPL_VAR NAME="S_UNIT">&s_unit=<TMPL_VAR NAME="S_UNIT">&action=modify_form">
+		<img src="../graphics/icon_wizard_step_3.png" alt="" height="80" width="119" border="0" />
+		</a>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_3&s_id=<TMPL_VAR NAME="LAST_S_ID">&action=modify_form">
+			<img src="../graphics/icon_wizard_step_3.png" alt="" height="80" width="119" border="0" />
+			</a>
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=wizard_step_3&s_id=<TMPL_VAR NAME="S_ID">&action=modify_form">
+				<img src="../graphics/icon_wizard_step_3.png" alt="" height="80" width="119" border="0" />
+				</a>
+			<TMPL_ELSE>
+				<img src="../graphics/icon_wizard_step_3_passive.png" alt="" height="80" width="119" border="0" />
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME=WIZARD_CAPTURE_4>
+	<img src="../graphics/icon_wizard_step_4_active.png" alt="" height="80" width="119" border="0" />
+<TMPL_ELSE>
+	<TMPL_IF NAME="S_UNIT">
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_normal_identifications&unit_id=<TMPL_VAR NAME="S_UNIT">&s_unit=<TMPL_VAR NAME="S_UNIT">&action=add_new_form" target="_blank">
+		<img src="../graphics/icon_wizard_step_4.png" alt="" height="80" width="119" border="0" />
+		</a>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_normal_identifications&unit_id=<TMPL_VAR NAME="LAST_S_ID">&s_unit=<TMPL_VAR NAME="LAST_S_ID">&action=add_new_form" target="_blank">
+			<img src="../graphics/icon_wizard_step_4.png" alt="" height="80" width="119" border="0" />
+			</a>
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_normal_identifications&unit_id=<TMPL_VAR NAME="S_ID">&s_unit=<TMPL_VAR NAME="S_ID">&action=add_new_form" target="_blank">
+				<img src="../graphics/icon_wizard_step_4.png" alt="" height="80" width="119" border="0" />
+				</a>
+			<TMPL_ELSE>
+				<img src="../graphics/icon_wizard_step_4_passive.png" alt="" height="80" width="119" border="0" />
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME=WIZARD_CAPTURE_5>
+	<img src="../graphics/icon_wizard_step_5_active.png" alt="" height="80" width="119" border="0" />
+<TMPL_ELSE>
+	<TMPL_IF NAME="S_UNIT">
+		<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen&unit_id=<TMPL_VAR NAME="S_UNIT">&s_unit=<TMPL_VAR NAME="S_UNIT">&action=add_new_form" target="_blank">
+		<img src="../graphics/icon_wizard_step_5.png" alt="" height="80" width="119" border="0" />
+		</a>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen&unit_id=<TMPL_VAR NAME="LAST_S_ID">&s_unit=<TMPL_VAR NAME="LAST_S_ID">&action=add_new_form" target="_blank">
+			<img src="../graphics/icon_wizard_step_5.png" alt="" height="80" width="119" border="0" />
+			</a>
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=view_specimen&unit_id=<TMPL_VAR NAME="S_ID">&s_unit=<TMPL_VAR NAME="S_ID">&action=add_new_form" target="_blank">
+				<img src="../graphics/icon_wizard_step_5.png" alt="" height="80" width="119" border="0" />
+				</a>
+			<TMPL_ELSE>
+				<img src="../graphics/icon_wizard_step_5_passive.png" alt="" height="80" width="119" border="0" />
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+</TMPL_IF>
+
+<h2>
+<TMPL_IF NAME=WIZARD_CAPTURE_1>
+	PASO 1 (información base de evento de colecta):
+</TMPL_IF>
+<TMPL_IF NAME=WIZARD_CAPTURE_2>
+	PASO 2 (información sobre localidad):
+</TMPL_IF>
+<TMPL_IF NAME=WIZARD_CAPTURE_3>
+	PASO 3 (informacion adicional sobre evento de colecta):
+</TMPL_IF>
+<TMPL_IF NAME=WIZARD_CAPTURE_4>
+	PASO 4 (identificación):
+</TMPL_IF>
+<TMPL_IF NAME=WIZARD_CAPTURE_5>
+	PASO 5 (especimen):
+</TMPL_IF>
+
+<TMPL_IF NAME="MENU_OUTPUT">
+busqueda
+</TMPL_IF>
+<TMPL_IF NAME="FORM_OUTPUT">
+captura de información 
+</TMPL_IF>
+<TMPL_IF NAME="TABLE_SINGLE_LINE">
+información
+	<TMPL_IF NAME="S_UNIT">
+		asociada con registro de colecta (ID <TMPL_VAR NAME="S_UNIT">)
+	<TMPL_ELSE>
+		<TMPL_IF NAME="LAST_S_ID">
+			asociada con registro de colecta (ID <TMPL_VAR NAME="LAST_S_ID">)
+		<TMPL_ELSE>
+			<TMPL_IF NAME="S_ID">
+				asociada con registro de colecta (ID <TMPL_VAR NAME="S_ID">)
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+capturada
+</TMPL_IF>
+</h2>

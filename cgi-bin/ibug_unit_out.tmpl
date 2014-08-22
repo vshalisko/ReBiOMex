@@ -1,0 +1,521 @@
+<TMPL_VAR NAME="PAGE_NAME">
+<div class="unit">
+<div class="unit_p">
+	<div class="unit_id">
+	Unit_id: <TMPL_VAR NAME="UNIT_ID">
+	<TMPL_IF NAME="UNIT_IDENTIFIER">
+		Identifier: <TMPL_VAR NAME="UNIT_IDENTIFIER">
+	</TMPL_IF>
+	<TMPL_IF NAME="UNIT_UNIVERSL_IDENTIFIER">
+		Universal identifier: <TMPL_VAR NAME="UNIT_UNIVERSAL_IDENTIFIER">
+	</TMPL_IF>
+	<TMPL_IF NAME="RECORD_BASE">
+		<TMPL_VAR NAME="RECORD_BASE">
+	</TMPL_IF>
+	</div>
+</div>
+
+<div class="unit_p">
+	<div class="taxon1">
+	<b><i><TMPL_VAR NAME="GENUS"> <TMPL_VAR NAME="IDENTIFICATION_CUALIFIER"> <TMPL_VAR NAME="SPECIE"></i> <TMPL_VAR NAME="AUTHOR"></b>
+	<TMPL_IF NAME="INFRASPECIFIC">
+		<TMPL_VAR NAME="INFRASPECIFIC_FLAG"> <b><i><TMPL_VAR NAME="INFRASPECIFIC_EPITHET"></i> <TMPL_VAR NAME="INFRASPECIFIC_AUTHOR"></b>
+	</TMPL_IF>
+		<TMPL_IF NAME="HYBRID">
+		<b><TMPL_VAR NAME="HYBRID_FLAG"> <i><TMPL_VAR NAME="HYBRID_GENUS"> <TMPL_VAR NAME="HYBRID_SPECIE"></i> <TMPL_VAR NAME="HYBRID_AUTHOR"></b>
+		</TMPL_IF>
+	<TMPL_IF NAME="NAME-ADDENDUM">
+		<TMPL_VAR NAME="NAME_ADDENDUM">
+	</TMPL_IF>
+	<TMPL_IF NAME="PREFERRED_FLAG">
+		*
+	</TMPL_IF>
+	<TMPL_IF NAME="SUBGENERIC_ID">
+	<span class="taxonomy_button"><a href="/cgi-bin/taxonomy.cgi?subgeneric_id=<TMPL_VAR NAME="SUBGENERIC_ID">"><img src="../graphics/icon_taxonomy.png" alt="consultar taxonomía" height="16" width="16" border="0" /></a></span>
+	</TMPL_IF>
+	</div>
+
+	<div class="familia">
+	<TMPL_IF NAME="FAMILY">
+		<TMPL_VAR NAME="FAMILY">
+	</TMPL_IF>
+	<TMPL_IF NAME="HYBRID_FAMILY">
+		<TMPL_VAR NAME="HYBRID_FLAG"> <TMPL_VAR NAME="HYBRID_FAMILY">
+	</TMPL_IF>
+	</div>
+</div>
+
+
+<div class="unit_p">
+  <div class="collecting">
+  <TMPL_IF NAME="COLLECTOR">
+	<span class="subheading">Col.:</span> <i><TMPL_VAR NAME="COLLECTOR"></i> <TMPL_VAR NAME="COLLECTOR_FIELD_NUMBER">
+  </TMPL_IF>
+  <TMPL_IF NAME="COLLECTING_DATE">
+	(<TMPL_VAR NAME="COLLECTING_DATE">)
+  </TMPL_IF>
+  <TMPL_IF NAME="PROJECT">
+	<br /><span class="project"><TMPL_VAR NAME="PROJECT"></span>
+  </TMPL_IF>
+  </div>
+</div>
+
+  <TMPL_IF NAME="IDENTIFIER">
+<div class="unit_p">
+	<div class="identification">
+	<span class="subheading"><TMPL_VAR NAME="IDENTIFIER_ROLE">:</span> <i><TMPL_VAR NAME="IDENTIFIER"></i>
+	<TMPL_IF NAME="IDENTIFICATION_DATE">
+		(<TMPL_VAR NAME="IDENTIFICATION_DATE">)
+	</TMPL_IF>
+	</div>
+</div>
+  </TMPL_IF>
+
+
+<div class="unit_p">
+  <div class="locality">
+  <TMPL_IF NAME="MUNICIPALITY">
+	<span class="subheading">Unidad de división administrativa:</span>
+	<TMPL_VAR NAME="MUNICIPALITY">, <TMPL_VAR NAME="STATE">, <TMPL_VAR NAME="COUNTRY">
+  <TMPL_ELSE>
+	<TMPL_IF NAME="STATE">
+	<span class="subheading">Unidad de división administrativa:</span>
+	<TMPL_VAR NAME="STATE">, <TMPL_VAR NAME="COUNTRY">
+	<TMPL_ELSE>
+		<TMPL_IF NAME="COUNTRY">
+			<span class="subheading">Pais:</span> <TMPL_VAR NAME="COUNTRY">
+		</TMPL_IF>
+	</TMPL_IF>
+  </TMPL_IF>
+  
+  <!-- localidad (dependent on status and login) -->
+  <TMPL_IF NAME="STATUS_LIST">
+	  <TMPL_IF NAME="USER_FULL_NAME">
+		  <TMPL_IF NAME="LOCALITY">
+			<br /><span class="subheading">Localidad:</span> <TMPL_VAR NAME="LOCALITY">
+		  </TMPL_IF>
+		  <br />
+		  <TMPL_IF NAME="COORDINATES">
+			<span class="subheading">Coordenadas geograficas de localidad:</span> <TMPL_VAR NAME="LATITUDE">, <TMPL_VAR NAME="LONGITUDE">
+		  </TMPL_IF>
+	  <TMPL_ELSE>
+		<TMPL_IF NAME="LOCALITY">
+		   <br /><span class="subheading">Localidad:</span> <i>para los especies con estatus de protección consulta de localidad de colecta está restringida (consulta disponible unicamente para los usuarios registrados)</i>
+		</TMPL_IF>
+	  </TMPL_IF>
+  <TMPL_ELSE>
+  	  <TMPL_IF NAME="LOCALITY">
+		<br /><span class="subheading">Localidad:</span> <TMPL_VAR NAME="LOCALITY">
+	  </TMPL_IF>
+	  <br />
+	  <TMPL_IF NAME="COORDINATES">
+		<span class="subheading">Coordenadas geograficas de localidad:</span> <TMPL_VAR NAME="LATITUDE">, <TMPL_VAR NAME="LONGITUDE">
+	  </TMPL_IF>
+  </TMPL_IF>
+  <!-- end of localidad -->
+  
+  <TMPL_IF NAME="ALTITUDE">
+	<span class="subheading">Altitud:</span> <TMPL_VAR NAME="ALTITUDE"> s. n. m.
+  </TMPL_IF>
+  </div>
+</div>
+
+<TMPL_IF NAME="ECOLOGY">
+<div class="unit_p">
+	<div class="ecology">
+	<TMPL_IF NAME="VEGETATION">
+		<span class="subheading">Tipo de vegetacián:</span> <TMPL_VAR NAME="VEGETATION">
+	</TMPL_IF>
+	<TMPL_IF NAME="MICROHABITAT">
+		<span class="subheading">Microhábitat:</span> <TMPL_VAR NAME="MICROHABITAT">
+	</TMPL_IF>
+	</div>
+</div>
+  </TMPL_IF>
+
+<div class="unit_p">
+  <div class="observations">
+  <TMPL_IF NAME="OBSERVATIONS_PLANT_ABUNDANCE">
+	<span class="subheading">Abundancia:</span> <TMPL_VAR NAME="OBSERVATIONS_PLANT_ABUNDANCE">
+  </TMPL_IF>
+  <TMPL_IF NAME="OBSERVATIONS_PLANT_FENOLOGY">
+	<span class="subheading">Fenología:</span> <TMPL_VAR NAME="OBSERVATIONS_PLANT_FENOLOGY">
+  </TMPL_IF>
+  <TMPL_IF NAME="OBSERVATIONS_PLANT_LIFEFORM">
+	<span class="subheading">Forma de crecimiento:</span> <TMPL_VAR NAME="OBSERVATIONS_PLANT_LIFEFORM">
+  </TMPL_IF>
+  <TMPL_IF NAME="OBSERVATIONS_PLANT_SIZE">
+	<span class="subheading">Tamaño:</span> <TMPL_VAR NAME="OBSERVATIONS_PLANT_SIZE"> m
+  </TMPL_IF>
+  <TMPL_IF NAME="OBSERVATIONS_PLANT_LONGEVITY">
+	<span class="subheading">Longevidad:</span> <TMPL_VAR NAME="OBSERVATIONS_PLANT_LONGEVITY">
+  </TMPL_IF>
+  <TMPL_IF NAME="OBSERVATIONS_PLANT_NUTRITION">
+	<span class="subheading">Nutricion:</span> <TMPL_VAR NAME="OBSERVATIONS_PLANT_NUTRITION">
+  </TMPL_IF>
+  </div>
+</div>
+
+  <TMPL_IF NAME="ETNOBOTANY">
+<div class="unit_p">
+	<div class="observations">
+	<TMPL_IF NAME="OBSERVATIONS_PLANT_COMMON_NAME">
+		<span class="subheading">Nombre común:</span> <TMPL_VAR NAME="OBSERVATIONS_PLANT_COMMON_NAME">
+	</TMPL_IF>
+	<TMPL_IF NAME="OBSERVATIONS_PLANT_USE">
+		<span class="subheading">Uso:</span> <TMPL_VAR NAME="OBSERVATIONS_PLANT_USE">
+	</TMPL_IF>
+	</div>
+</div>
+  </TMPL_IF>
+
+<TMPL_IF NAME="COMMENT">
+<div class="unit_p">
+	<div class="comment">
+	<span class="subheading">Comentarios:</span> <TMPL_VAR NAME="COMMENT">
+	</div>
+</div>
+</TMPL_IF>
+
+<TMPL_IF NAME="REFERENCE">
+<div class="unit_p">
+	<div class="reference">
+	<span class="subheading">Referencia (relacionada con identificación):</span> <TMPL_VAR NAME="REFERENCE_AUTHOR"> <TMPL_VAR NAME="REFERENCE_ABBREVIATION"> <TMPL_VAR NAME="REFERENCE_DETAIL">
+	<TMPL_IF NAME="REFERENCE_DATE">
+		(<TMPL_VAR NAME="REFERENCE_DATE">)
+	</TMPL_IF>
+	</div>
+</div>
+</TMPL_IF>
+
+
+
+
+<TMPL_IF NAME="ALT_IDENTIFICATION">
+	<div class="identification_list">
+	<h4>Identificaciones alternativas:</h4>
+	<TMPL_IF NAME="CURADOR">
+		<div class="identification_menu">
+		<a href="/cgi-bin/curador.cgi?action=search&table=view_normal_identifications&s_2=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_select.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;trabajar con la lista de identificaciones</a>&nbsp;
+		<a href="/cgi-bin/curador.cgi?action=add_new_form&table=view_normal_identifications&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;agregar nueva identificación</a>&nbsp;
+		</div>
+	</TMPL_IF>
+	<TMPL_IF NAME="INVESTIGADOR">
+		<div class="identification_menu">
+		<a href="/cgi-bin/investigador.cgi?action=search&table=view_normal_identifications&s_2=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_select.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;trabajar con la lista de identificaciones</a>&nbsp;
+		<a href="/cgi-bin/investigador.cgi?action=add_new_form&table=view_normal_identifications&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;agregar nueva identificación</a>&nbsp;
+		</div>
+	</TMPL_IF>
+	<TMPL_LOOP NAME="ALT_IDENTIFICATION">
+		<div class="identification_list_li">
+			<b>&#187;</b>&nbsp;
+			<TMPL_IF NAME="ALT_PREFERRED_FLAG">
+				Identificación preferida
+			</TMPL_IF>
+			<TMPL_IF NAME="ALT_STORED_UNDER"> 
+				Almacenado en herbario como
+			</TMPL_IF>
+			<TMPL_IF NAME="ALT_NON_FLAG"> 
+				Non 
+			</TMPL_IF>
+			<TMPL_IF NAME="ALT_TYPE"> 
+				Identificación de tipo
+			</TMPL_IF>
+
+			<a href="/cgi-bin/ibug_unit.cgi?unit_id=<TMPL_VAR NAME="ALT_UNIT_ID">&identification_id=<TMPL_VAR NAME="ALT_IDENTIFICATION_ID">">
+			<TMPL_IF NAME="ALT_GENUS"> 
+				<i><TMPL_VAR NAME="ALT_GENUS"> <TMPL_VAR NAME="ALT_SPECIE"></i> <TMPL_VAR NAME="ALT_AUTHOR">
+			</TMPL_IF>
+			<TMPL_IF NAME="ALT_INFRASPECIFIC_EPITHET">
+				<TMPL_VAR NAME="ALT_INFRASPECIFIC_FLAG"> <i><TMPL_VAR NAME="ALT_INFRASPECIFIC_EPITHET"></i> <TMPL_VAR NAME="ALT_INFRASPECIFIC_AUTHOR">
+			</TMPL_IF>
+			<TMPL_IF NAME="ALT_HYBRID_SPECIE">
+				<TMPL_VAR NAME="ALT_HYBRID_FLAG"> <i><TMPL_VAR NAME="ALT_HYBRID_GENUS"><TMPL_VAR NAME="ALT_HYBRID_SPECIE"></i> <TMPL_VAR NAME="ALT_HYBRID_AUTHOR">
+			</TMPL_IF>
+			</a>
+			<TMPL_IF NAME="ALT_IDENTIFIER">
+				&nbsp;(<span class="subheading"><TMPL_VAR NAME="ALT_ROLE"></span>:&nbsp;<i><TMPL_VAR NAME="ALT_IDENTIFIER"></i>
+				<TMPL_IF NAME="ALT_DATE">
+					<TMPL_VAR NAME="ALT_DATE">
+				</TMPL_IF>
+				)
+			</TMPL_IF>
+		<TMPL_IF NAME="ALT_SUBGENERIC_ID">
+			<div class="identification_actions">
+			<a href="/cgi-bin/taxonomy.cgi?subgeneric_id=<TMPL_VAR NAME="ALT_SUBGENERIC_ID">"><img src="../graphics/icon_taxonomy.png" alt="consultar taxonomía" height="16" width="16" border="0" /></a>
+			</div>
+		</TMPL_IF>
+		</div>
+	</TMPL_LOOP>
+	</div>
+</TMPL_IF>
+
+<TMPL_IF NAME="SPECIMEN_LIST">
+	<div class="specimen_list">
+	<h4>Especimenes:</h4>
+	<TMPL_IF NAME="CURADOR">
+		<div class="specimen_menu">
+		<a href="/cgi-bin/curador.cgi?action=search&table=view_specimen&s_2=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_select.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;trabajar con la lista de especímenes</a>&nbsp;
+		<a href="/cgi-bin/curador.cgi?action=add_new_form&table=view_specimen&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;agregar nuevo espécimen</a>&nbsp;
+		</div>
+	</TMPL_IF>
+	<TMPL_IF NAME="INVESTIGADOR">
+		<div class="specimen_menu">
+		<a href="/cgi-bin/investigador.cgi?action=search&table=view_specimen&s_2=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_select.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;trabajar con la lista de especímenes</a>&nbsp;
+		<a href="/cgi-bin/investigador.cgi?action=add_new_form&table=view_specimen&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+		<img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;agregar nuevo espécimen</a>&nbsp;
+		</div>
+	</TMPL_IF>
+	<TMPL_LOOP NAME="SPECIMEN">
+		<div class="specimen_list_li">
+		<b>&#187;</b>&nbsp;
+		<TMPL_IF NAME="TYPE_STATUS">
+			<span class="type"><TMPL_VAR NAME="TYPE_STATUS">: </span>
+		</TMPL_IF>
+		<TMPL_IF NAME="HERBARIUM_ABBREVIATION">
+			<TMPL_VAR NAME="HERBARIUM_ABBREVIATION">
+		</TMPL_IF>
+		<TMPL_IF NAME="HERBARIUM_NUMBER">
+			(No. <TMPL_VAR NAME="HERBARIUM_NUMBER">) 
+		</TMPL_IF>
+		<TMPL_IF NAME="SPECIMEN_COMMENT">
+			<span class="comment"><TMPL_VAR NAME="SPECIMEN_COMMENT"></span>
+		</TMPL_IF>
+		
+		<!-- specimen menu -->
+		<div class="specimen_actions">
+		<TMPL_IF NAME="CURADOR">
+			<a href="/cgi-bin/curador.cgi?action=add_new_form&table=view_specimen_images&specimen_id=<TMPL_VAR NAME="SPECIMEN_ID">">
+			<img src="../graphics/icon_herbarium.png" alt="agregar imagen del espécimen" height="24" width="20" border="0" /></a>&nbsp;
+		</TMPL_IF>
+		<TMPL_IF NAME="INVESTIGADOR">
+			<a href="/cgi-bin/investigador.cgi?action=add_new_form&table=view_specimen_images&specimen_id=<TMPL_VAR NAME="SPECIMEN_ID">">
+			<img src="../graphics/icon_herbarium.png" alt="agregar imagen del espécimen" height="24" width="20" border="0" /></a>&nbsp;
+		</TMPL_IF>
+		<TMPL_IF NAME="IDENTIFICATION_ID"> <!-- lable printing and canasta are available only when identification is positive -->
+			Etiqueta:
+			&nbsp;<a href="/cgi-bin/ibug_pdf.cgi?unit_list=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b1b<TMPL_VAR NAME="SPECIMEN_ID">">
+			<img src="../graphics/icon_pdf.gif" height="16" width="16" alt="imprimir etiqueta" border="0" /></a>
+			<TMPL_IF NAME="USER_LOGIN">
+				&nbsp;<a href="/cgi-bin/ibug_unit.cgi?unit_id=<TMPL_VAR NAME="UNIT_ID">&identification_id=<TMPL_VAR NAME="IDENTIFICATION_ID">&add_canasta=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b1b<TMPL_VAR NAME="SPECIMEN_ID">">
+				<img src="../graphics/icon_canasta.gif" height="16" width="19" alt="agregar etiqueta a canasta" border="0" /></a>
+			</TMPL_IF>
+		</TMPL_IF>
+		</div>
+		<!-- specimen menu end -->
+
+		<!-- specimen image -->
+		<div class="specimen_images">
+		<TMPL_LOOP NAME="SPECIMEN_IMAGE">
+			<TMPL_IF NAME="FULL_IMAGE">
+				<a class="thumbnail" href="<TMPL_VAR NAME="FULL_IMAGE">">
+			<TMPL_ELSE>
+				<TMPL_IF NAME="LORES_IMAGE">
+					<a class="thumbnail" href="<TMPL_VAR NAME="LORES_IMAGE">">
+				<TMPL_ELSE>
+					<TMPL_IF NAME="THUMB_IMAGE">
+						<a class="thumbnail" href="<TMPL_VAR NAME="THUMB_IMAGE">">
+					<TMPL_ELSE>
+						<a class="thumbnail" href="/graphics/thumb_default.png">
+					</TMPL_IF>
+				</TMPL_IF>
+			</TMPL_IF>
+			<TMPL_IF NAME="THUMB_IMAGE">
+				<img src="<TMPL_VAR NAME="THUMB_IMAGE">" width="70px" height="100px" border="0" />
+			<TMPL_ELSE>
+				<img src="/graphics/thumb_default.png" width="70px" height="100px" border="0" />
+			</TMPL_IF>
+			<TMPL_IF NAME="LORES_IMAGE">
+				<span><img src="<TMPL_VAR NAME="LORES_IMAGE">" /><br />
+				<TMPL_IF NAME="TYPE_STATUS">
+					<span class="type"><TMPL_VAR NAME="TYPE_STATUS">: </span>
+				</TMPL_IF>
+				<TMPL_IF NAME="HERBARIUM_ABBREVIATION"> 
+					<TMPL_VAR NAME="HERBARIUM_ABBREVIATION">
+				</TMPL_IF>
+				<TMPL_IF NAME="HERBARIUM_NUMBER">
+					(No. <TMPL_VAR NAME="HERBARIUM_NUMBER">) 
+				</TMPL_IF>
+				<TMPL_IF NAME="COMMENT"> 
+					<br /><TMPL_VAR NAME="COMMENT">
+				</TMPL_IF>
+				<TMPL_IF NAME="SPECIMEN_COMMENT"> 
+					<br /><TMPL_VAR NAME="SPECIMEN_COMMENT">
+				</TMPL_IF>
+				</span>
+			</TMPL_IF>
+			</a>
+		</TMPL_LOOP>
+		</div>
+		<!-- specimen image end -->
+
+		</div>		
+	</TMPL_LOOP>
+	</div>
+</TMPL_IF>
+
+
+<TMPL_IF NAME="STATUS_LIST">
+<div class="status_list">
+<h4>Estatus de taxon:</h4>
+	<TMPL_LOOP NAME="STATUS_LIST">
+		<div class="status_list_li"><!-- <TMPL_VAR NAME="SUBGENERIC_ID"> <TMPL_VAR NAME="PUBID"> -->
+		<b>&#187;</b>&nbsp;<TMPL_IF NAME="PUBDATE">[<TMPL_VAR NAME="PUBDATE">]&nbsp;</TMPL_IF><TMPL_VAR NAME="PUBABBREVIATION">: <TMPL_VAR NAME="STATUS">
+		<TMPL_IF NAME="STATUS_COMMENT"><span class="note">(<TMPL_VAR NAME="STATUS_COMMENT">)</span></TMPL_IF>
+		</div>
+	</TMPL_LOOP>
+</div>
+</TMPL_IF>
+
+
+<TMPL_IF NAME="REFERENCES_LIST">
+<div class="references_list">
+<h4>Referencias bibliográficas donde está citado especimen:</h4>
+<TMPL_IF NAME="CURADOR">
+	<div class="references_menu">
+	<a href="/cgi-bin/curador.cgi?action=search&table=view_assignation_reference&s_1=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_select.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;trabajar con la lista de referencias</a>&nbsp;
+	<a href="/cgi-bin/curador.cgi?action=add_new_form&table=view_assignation_reference&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;agregar nueva referencia</a>&nbsp;
+	</div>
+</TMPL_IF>
+<TMPL_IF NAME="INVESTIGADOR">
+	<div class="references_menu">
+	<a href="/cgi-bin/investigador.cgi?action=search&table=view_assignation_reference&s_1=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_select.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;trabajar con la lista de referencias</a>&nbsp;
+	<a href="/cgi-bin/investigador.cgi?action=add_new_form&table=view_assignation_reference&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;agregar nueva referencia</a>&nbsp;
+	</div>
+</TMPL_IF>
+	<TMPL_LOOP NAME="REFERENCES_LIST">
+		<!-- <TMPL_VAR NAME="UNIT_ID"> <TMPL_VAR NAME="IDENTIFICATION_ID"> -->
+		<div class="references_list_li">
+		<b>&#187;</b>&nbsp;<TMPL_VAR NAME="REFERENCE"> 
+		<TMPL_IF NAME="REFERENCE_COMMENT">(<TMPL_VAR NAME="REFERENCE_COMMENT">)</TMPL_IF>
+		</div>
+	</TMPL_LOOP>
+</div>
+</TMPL_IF>
+
+
+<TMPL_IF NAME="AREAS_LIST">
+<div class="areas_list">
+<h4>Unidades geográficas:</h4>
+<TMPL_IF NAME="CURADOR">
+	<div class="areas_menu">
+	<a href="/cgi-bin/curador.cgi?action=search&table=view_assignation_named_area&s_1=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_select.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;trabajar con la lista de unidades geograficas</a>&nbsp;
+	<a href="/cgi-bin/curador.cgi?action=add_new_form&table=view_assignation_named_area&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;agregar nueva unidad geografica</a>&nbsp;
+	</div>
+</TMPL_IF>
+<TMPL_IF NAME="INVESTIGADOR">
+	<div class="areas_menu">
+	<a href="/cgi-bin/investigador.cgi?action=search&table=view_assignation_named_area&s_1=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_select.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;trabajar con la lista de unidades geograficas</a>&nbsp;
+	<a href="/cgi-bin/investigador.cgi?action=add_new_form&table=view_assignation_named_area&unit_id=<TMPL_VAR NAME="UNIT_ID">">
+	<img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" />&nbsp;agregar nueva unidad geografica</a>&nbsp;
+	</div>
+</TMPL_IF>
+	<TMPL_LOOP NAME="AREAS_LIST">
+		<!-- <TMPL_VAR NAME="UNIT_ID"> <TMPL_VAR NAME="IDENTIFICATION_ID"> <TMPL_VAR NAME="AREA_COMMENT"> -->
+		<div class="areas_list_li">
+		<b>&#187;</b>&nbsp;<TMPL_VAR NAME="AREA"> (<TMPL_VAR NAME="AREA_TYPE">)
+		</div>
+	</TMPL_LOOP>
+</div>
+</TMPL_IF>
+
+
+<TMPL_IF NAME="NO_MATCH">
+<TMPL_ELSE>
+
+<!-- symbology -->
+<div class="simbology">
+	<!-- 
+	<TMPL_IF NAME="PREFERRED_FLAG"><span class="subheading">Simbología:</span></TMPL_IF>
+	-->
+	<b>*</b> - simbolo de asterisco indica la identificacion preferida
+	<!--
+	<img src="../graphics/icon_taxonomy.png" alt="consultar taxonomia" height="16" width="16" border="0" /> - revisar posición del taxon
+	<img src="../graphics/icon_pdf.gif" alt="imprimir etiqueta" height="16" width="16" border="0" /> - generar etiqueta en PDF
+	<img src="../graphics/icon_canasta.gif" alt="agregar etiqueta a canasta" height="16" width="19" border="0" /> - agregar etiqueta a canasta
+	<img src="../graphics/icon_xml.gif" alt="exportar XML" height="14" width="36" border="0" /> - exportar XML
+	-->
+</div>
+<!-- symbology end -->
+
+<!-- record credits -->
+<div class="credits">
+	<TMPL_IF NAME="DATABASE">
+		Registro forma parte de <i><TMPL_VAR NAME="DATABASE"></i><br />
+	</TMPL_IF>
+	<TMPL_IF NAME="RECORD_CREATOR">
+		Capturado por <i><TMPL_VAR NAME="RECORD_CREATOR"></i>
+		<TMPL_IF NAME="RECORD_CREATION_DATE">
+			[<TMPL_VAR NAME="RECORD_CREATION_DATE">]
+		</TMPL_IF>
+		<TMPL_IF NAME="RECORD_MODIFICATION">
+			<br />Modificado por
+			<TMPL_LOOP NAME="RECORD_MODIFICATION">
+				<i><TMPL_VAR NAME="RECORD_MODIFICATOR"></i>
+				<TMPL_IF NAME="RECORD_MODIFICATION_DATE">
+					[<TMPL_VAR NAME="RECORD_MODIFICATION_DATE">]
+				</TMPL_IF>
+			</TMPL_LOOP>
+		</TMPL_IF>
+	</TMPL_IF>
+	
+
+</div>
+<!-- record credits end -->
+</TMPL_IF>
+
+<TMPL_IF NAME="NO_MATCH">
+<TMPL_ELSE>
+<!-- bottom fixed width menu -->
+	<div class="bottom_menu">Trabajar con registro actual:</div>
+
+	<TMPL_IF NAME="CURADOR">	
+	<TMPL_INCLUDE NAME="ibug_unit_out_bottom_menu.tmpl">
+	</TMPL_IF>
+
+	<TMPL_IF NAME="INVESTIGADOR">
+	<TMPL_INCLUDE NAME="ibug_unit_out_bottom_menu.tmpl">
+	</TMPL_IF>
+		
+	<br />
+    <table width="100%" cellpadding="0" cellspacing="1" border="0">
+      <tr>  
+        <td width="580px">
+	<div class="local_menu">
+	<ul>
+          <li><a href="/cgi-bin/xml_export.cgi?unit_list=<TMPL_VAR NAME="UNIT_ID">">exportar XML</a></li>
+	<TMPL_IF NAME="IDENTIFICATION_ID"> <!-- lable printing is available only when identification is positive -->
+		<TMPL_IF NAME="SPECIMEN_LIST"><TMPL_ELSE> 
+		  <li><a href="/cgi-bin/ibug_pdf.cgi?unit_list=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b1">
+		<img src="../graphics/icon_pdf.gif" height="16" width="16" alt="imprimir etiqueta" border="0" />etiqueta</a></li>
+			<TMPL_IF NAME="USER_LOGIN">
+			<li><a href="/cgi-bin/ibug_unit.cgi?unit_id=<TMPL_VAR NAME="UNIT_ID">&identification_id=<TMPL_VAR NAME="IDENTIFICATION_ID">&add_canasta=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b1">
+			<img src="../graphics/icon_canasta.gif" height="16" width="19" alt="agregar etiqueta a canasta" border="0" />a canasta</a></li>
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+	</ul>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+
+<!-- end of bottom fixed width menu -->
+</TMPL_IF>
+
+</div>

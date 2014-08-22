@@ -1,0 +1,73 @@
+		<!-- user administration menu -->
+			 
+<TMPL_IF NAME="SQL_CODE">
+				<div class="heading">Ventana de ejecución</div>
+				<table class="style1" width="100%">
+				<tr>
+					<td>SQL: <TMPL_VAR NAME="SQL_CODE"></td>
+				</tr>
+				<tr>
+					<td>Estatus de servidor de base de datos: 
+					<TMPL_IF NAME="SQL_PING_RESULT">
+					servidor responde
+					<TMPL_ELSE>
+					servidor NO responde
+					</TMPL_IF>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Resultados de ejecucion:
+					<TMPL_IF NAME="SQL_CODE_RESULT">
+					<pre>
+<!-- preformated text as a result of code execution, should be without margin -->
+<TMPL_VAR NAME="SQL_CODE_RESULT">
+					</pre>
+					<TMPL_ELSE>
+						Servidor de base de datos no ha regresado los resultados de ejecucion del codigo SQL.
+					</TMPL_IF>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Errores de ejecucion:
+					<TMPL_IF NAME="SQL_CODE_ERROR">
+					<pre>
+<!-- preformated text as an error of code execution, should be without margin -->
+<TMPL_VAR NAME="SQL_CODE_ERROR">
+					</pre>
+					<TMPL_ELSE>
+						Servidor de base de datos no ha generado errores durante ejecucion del codigo SQL.
+					</TMPL_IF>
+					</td>
+				</tr>
+
+				</table>
+</TMPL_IF>
+			 
+	<form action="/cgi-bin/admin.cgi" method="post">
+		<div>
+			<label for="submit">Regresar a menu inicial de interface de administrador</label>
+			<input type="submit" class="formbutton" value="Regresar" />
+		</div>
+	</form>
+
+	<form action="/cgi-bin/admin.cgi" method="post">
+		<div>
+			<label for="sql_code">Codigo SQL</label>
+			<textarea name="sql_code" rows="10" cols="50"></textarea>
+			<br />
+			<label for="submit">Ejecutar codigo SQL especificado</label>
+			<input type="hidden" name="sql" value="1" /><input type="submit" class="formbutton" value="Ejecutar" />
+		</div>
+		<div class="note">El codigo SQL tiene que ser utilizado con extremada precaucion por su capacidad modificacion de estructura y contenido de datos.
+		<br />
+		<b>Ejemplos de consulta:</b>
+		<br />1. <i>SELECT COUNT(*) FROM unit LEFT JOIN identification ON unit.unit_id &lt;=&gt; identification.unit_id WHERE identification.identification_id IS NULL;</i>
+		<br />(determinar el número de registros sin identificación asignada)
+		<br />2. <i>SELECT team_id + 1 AS new_team_id FROM teams ORDER BY team_id DESC LIMIT 1;</i>
+		<br />(determinar ID de nuevo grupo de colectores)
+		<br />3. <i>SELECT COUNT(*) FROM (SELECT view_taxonomy.genus, view_taxonomy.specie, COUNT(*) FROM view_taxonomy LEFT JOIN identification ON identification.subgeneric_id &lt;=&gt;view_taxonomy.subgeneric_id GROUP BY view_taxonomy.familia_id, view_taxonomy.genus_id, view_taxonomy.specie) AS taxo;</i>
+		<br />(determinar número total de taxa a nivel de especie utilizado en identificación de especimenes)
+		</div>
+	</form>				 

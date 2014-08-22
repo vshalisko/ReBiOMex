@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" lang="en" xml?ns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="Copyright" content="ReBiOMex" />
+<meta name="Author" content="Software by Viacheslav Shalisko, database contents ReBiOMex, Botanical Institute of the University of Guadalajara (IBUG), project OETJ">
+<meta http-equiv="Cache-Control" content="no-cash" /> 
+<meta http-equiv="Content-Style-Type" content="text/css" />
+
+<title><TMPL_VAR NAME="PAGE_TITLE"></title>
+
+		<!-- This file contains the threading. -->
+		<script src="../ajax_threads.js" type="text/javascript"></script>
+
+<script language="Javascript">
+// <![CDATA[
+// CURRENT SITUATION: temporal solution, 
+
+function updatepage(str,id){
+	document.getElementById(id).innerHTML = str;
+}
+
+function xmlhttpGet(strURL,tag_id){
+	var	eDate = new Date();
+	// timeout 30 sec
+	updatepage('<img src="../graphics/icon_wait.gif" alt="AJAX request" height="16" width="16" border="0" /> ',tag_id); // set updating icon
+	// alert ( "AJAX: ("+tag_id+": "+strURL+ ")" );  // debugging
+	var index = MakeNewAJAXCall(strURL, SimpleCallback, 'GET', ComplexCallback, tag_id, eDate.getTime(), TimeoutCallback, 30);
+}
+
+function SimpleCallback(in_text, in_param, in_param2){
+	var	eDate = new Date();
+	var time_spent = parseInt ((eDate.getTime() - in_param2) / 100) / 10;
+	updatepage(in_text,in_param);
+	// alert ( "AJAX: ("+in_param+": "+in_text+ ")" );  // debugging
+}
+
+function ComplexCallback(in_stage, in_text, in_param, in_param2, in_index){
+	var	eDate = new Date();
+	var time_spent = parseInt ((eDate.getTime() - in_param2) / 100) / 10;
+	updatepage('<img src="../graphics/icon_wait.gif" alt="AJAX request" height="16" width="16" border="0" /> ',in_param);
+}
+
+function TimeoutCallback(in_param, in_param2, in_index){
+	updatepage('[<img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" /> AJAX timeout] ',in_param);
+}
+
+// ]]>
+</script>
+
+<!-- Google analytics. -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12787161-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<link rel="StyleSheet" href="../style.css" type="text/css" />
+</head>
+<body bgcolor="white">
+
+<div class="layout_box">     
+
+<div class="upper_box">
+	<!-- BEGIN CANASTA -->
+	<div class="canasta_box">
+	<TMPL_IF NAME="CANASTA">
+	<a href="/cgi-bin/canasta.cgi"><img src="../graphics/icon_canasta.gif" height="16" width="19" alt="canasta" border="0" /></a>
+	&nbsp;En la canasta estan <TMPL_VAR NAME="ETIQUETES_NUMBER"> etiquetes. 
+	<a href="/cgi-bin/canasta.cgi">Revisar el contenido</a>.
+	</TMPL_IF>
+	</div>
+	<!-- END CANASTA -->
+
+	<!-- BEGIN LOGON -->
+	<div class="logon_box">
+	<!-- <TMPL_VAR NAME="SCRIPT_NAME"> -->
+	    <TMPL_IF NAME="USER_LOGIN">
+	      <TMPL_IF NAME="LOGIN_LOGIN_FORM">
+	      <div class="logon">
+		Hola <b>
+		<TMPL_IF NAME="USER_FULL_NAME">
+			<TMPL_VAR NAME="USER_FULL_NAME">
+			<!--<TMPL_VAR NAME="USER_INSTITUTION">-->
+		<TMPL_ELSE>
+			<TMPL_VAR NAME="USER_LOGIN">
+		</TMPL_IF>	
+		</b>!
+	      </div>
+	      <TMPL_ELSE>
+	      <form class="form_logon" action="/cgi-bin/ibug.cgi" method="post">
+		      <div class="logon">
+			Hola <b>
+			<TMPL_IF NAME="USER_FULL_NAME">
+				<TMPL_VAR NAME="USER_FULL_NAME">
+				<!--<TMPL_VAR NAME="USER_INSTITUTION">-->
+			<TMPL_ELSE>
+				<TMPL_VAR NAME="USER_LOGIN">
+			</TMPL_IF>
+			</b>! 
+			<TMPL_IF NAME="USER_ACCESS">
+			Acceso en modo de <b><TMPL_VAR NAME="USER_ACCESS"></b>.
+			<TMPL_ELSE>
+			Acceso en modo de <b>lectura</b>.
+			</TMPL_IF>
+			<input type="hidden" name="logout" value="logout" /> <input type="submit" value="Logout" />
+		      </div>
+	      </form>
+	      </TMPL_IF>
+	    <TMPL_ELSE>
+	      <form class="form_logon" action="/cgi-bin/ibug.cgi" method="post">
+		      <div class="logon">
+			Usuario: <input type="text" size="10" maxlength="50" alt="login" name="user_login" /> <input type="submit" value="Login" />
+		      </div>
+	      </form>
+	    </TMPL_IF>
+	</div>
+	<!-- END LOGON -->
+</div>
+
+
+<!-- BEGIN BANNER -->
+<div class="upper_banner_box">
+		<div class="header_1">
+			Red de Biodiversidad del Occidente de México
+		</div>
+		<div class="header_3">
+			[ReBiOMex] versión β
+		</div>
+		<div class="header_2">
+			Instituto de Botánica del Departamento de Botánica y Zoologia de la&nbsp;Universidad de&nbsp;Guadalajara (herbario IBUG &quot;Luz&nbsp;María&nbsp;Villareal&nbsp;de&nbsp;Puga&quot;, proyecto OETJ)
+		</div>
+		<div class="header_2">
+			Departamento de Geografía y Ordenación territorial de la&nbsp;Universidad de&nbsp;Guadalajara (área&nbsp;de&nbsp;biogeografía)
+		</div>
+</div>
+<!-- END BANNER -->
+
+<!-- BEGIN MENU -->
+<div class="title_box_menu">
+	<div class="menu">
+		<ul>
+		<li><a href="/"><span class="menu_left_margen">inicio</span></a></li>
+		<li><a href="/cgi-bin/ibug_list.cgi">buscar especímenes</a></li>
+		<li><a href="/cgi-bin/taxonomy.cgi">consulta taxonómica</a></li>
+		<li><a href="/cgi-bin/ibug.cgi?about=1">acerca de ReBiOMex</a></li>
+		<li><a href="http://blog.rebiomex.org">blog</a></li>
+		<TMPL_IF NAME="ESTUDIANTE">
+		<li>estudiante</li>
+		</TMPL_IF>
+		<TMPL_IF NAME="INVESTIGADOR">
+		<li><a href="/cgi-bin/investigador.cgi"><span class="menu_special">investigador</span></a></li>
+		</TMPL_IF>
+		<TMPL_IF NAME="CURADOR">
+		<li><a href="/cgi-bin/curador.cgi"><span class="menu_special">curador</span></a></li>
+		</TMPL_IF>
+		<TMPL_IF NAME="ADMIN">
+		<li><a href="/cgi-bin/admin.cgi"><span class="menu_special">administrador</span></a></li>
+		</TMPL_IF>
+		</ul>
+	</div>
+</div>
+<!-- END MENU -->
+
+<!-- BEGIN MAIN -->
+<div class="main_content_box">
+    

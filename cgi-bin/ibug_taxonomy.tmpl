@@ -1,0 +1,314 @@
+<h2>
+<TMPL_IF NAME="NO_CLAUSE">
+<!-- Buscar generos y taxa subgenericos registrados en base de datos. -->
+<TMPL_ELSE>
+	Consulta taxonomica
+	<TMPL_IF NAME="SUBGENERIC_ID">
+	en base de nombre de taxa de nivel subgenerico.
+	<TMPL_ELSE>
+		<TMPL_IF NAME="GENUS_ID">
+		en base de nombre de genero.
+		<TMPL_ELSE>
+			<TMPL_IF NAME="FAMILIA_ID">
+			en base de nombre de familia.
+			<TMPL_ELSE>
+			en base del reino.
+			</TMPL_IF>
+		</TMPL_IF>
+	</TMPL_IF>
+	<TMPL_IF NAME="TAXONOMY_LIST_VIEW">
+		<TMPL_IF NAME="SUBGENERIC_ID">
+		<br />Con parametros de búsqueda especificados en base de datos fueron encontrados <TMPL_VAR NAME="TAXONOMY_RECORD_NUM"> registros de especies y taxa infraespecificos:
+		<TMPL_ELSE>
+		<br />Con parametros de búsqueda especificados en base de datos fueron encontrados <TMPL_VAR NAME="TAXONOMY_RECORD_NUM"> registros de taxa:
+		</TMPL_IF>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="NO_MATCH">
+		<br />En base de datos NO fueron encontrados registros de taxa con parametros de búsqueda especificados.
+		<TMPL_ELSE>
+		<br />Con parametros de búsqueda especificados en base de datos fue encontrado un registro de especie o taxa infraespecifico.
+		</TMPL_IF>
+	</TMPL_IF>
+</TMPL_IF>
+</h2>
+
+<TMPL_IF NAME="TAXONOMY_LIST_VIEW">
+<!--  list taxonomy view -->
+<TMPL_LOOP NAME="TAXONOMY_LIST">
+<!--
+<TMPL_VAR NAME="REGNUM">
+<TMPL_VAR NAME="REGNUM_COMMENT">
+<TMPL_VAR NAME="PHYLUM">
+<TMPL_VAR NAME="CLASSIS">
+<TMPL_VAR NAME="ORDO">
+<TMPL_VAR NAME="FAMILY_COMMENT">
+<TMPL_VAR NAME="GENUS_AUTHOR">
+<TMPL_VAR NAME="FAMILIA_ID">
+<TMPL_VAR NAME="GENUS_ID">
+<TMPL_VAR NAME="SUBGENERIC_ID">
+<TMPL_VAR NAME="TAXA_COUNT">
+<TMPL_VAR NAME="PREFERRED_TAXA_COUNT">
+-->
+	<div class="taxon_list_view">
+		<span class="taxonomy_space">
+		<TMPL_IF NAME="SUBGENERIC_ID">
+		<a href="/cgi-bin/taxonomy.cgi?
+		<TMPL_IF NAME="FAMILIA_ID">familia_id=<TMPL_VAR NAME="FAMILIA_ID">&<TMPL_ELSE><TMPL_IF NAME="FAMILIA">familia=<TMPL_VAR NAME="FAMILIA">&</TMPL_IF></TMPL_IF>
+		<TMPL_IF NAME="GENUS_ID">genus_id=<TMPL_VAR NAME="GENUS_ID">&<TMPL_ELSE><TMPL_IF NAME="GENUS">genus=<TMPL_VAR NAME="GENUS">&</TMPL_IF></TMPL_IF>
+		<TMPL_IF NAME="SUBGENERIC_ID">subgeneric_id=<TMPL_VAR NAME="SUBGENERIC_ID">&<TMPL_ELSE><TMPL_IF NAME="SPECIE">specie=<TMPL_VAR NAME="SPECIE">&</TMPL_IF></TMPL_IF>
+		">		
+		<TMPL_ELSE>
+		<a href="/cgi-bin/taxonomy.cgi?
+		<TMPL_IF NAME="FAMILIA_ID">familia_id=<TMPL_VAR NAME="FAMILIA_ID">&<TMPL_ELSE><TMPL_IF NAME="FAMILIA">familia=<TMPL_VAR NAME="FAMILIA">&</TMPL_IF></TMPL_IF>
+		<TMPL_IF NAME="GENUS_ID">genus_id=<TMPL_VAR NAME="GENUS_ID">&<TMPL_ELSE><TMPL_IF NAME="GENUS">genus=<TMPL_VAR NAME="GENUS">&</TMPL_IF></TMPL_IF>
+		">		
+		</TMPL_IF>
+		<img src="../graphics/icon_taxonomy.png" alt="consultar taxonomía" height="16" width="16" border="0" />
+		</a>
+		&nbsp;
+		<TMPL_IF NAME="TAXA_COUNT">
+			<TMPL_IF NAME="SUBGENERIC_ID">
+				
+				<a href="/cgi-bin/ibug_list.cgi?
+				<TMPL_IF NAME="FAMILIA">family=<TMPL_VAR NAME="FAMILIA">&</TMPL_IF>
+				<TMPL_IF NAME="GENUS">genus=<TMPL_VAR NAME="GENUS">&</TMPL_IF>
+				<TMPL_IF NAME="SPECIE">specie=<TMPL_VAR NAME="SPECIE">&</TMPL_IF>
+				">		
+			<TMPL_ELSE>
+				<a href="/cgi-bin/ibug_list.cgi?
+				<TMPL_IF NAME="FAMILIA">family=<TMPL_VAR NAME="FAMILIA">&</TMPL_IF>
+				<TMPL_IF NAME="GENUS">genus=<TMPL_VAR NAME="GENUS">&</TMPL_IF>
+				">
+				
+			</TMPL_IF>
+			<img src="../graphics/icon_specimenlist.png" alt="consultar registros de colecta" height="16" width="16" border="0" />
+			</a>
+			</span>
+		</TMPL_IF>
+
+	  <b><i><TMPL_VAR NAME="GENUS"></i></b> 
+	  <TMPL_IF NAME="SUBGENERIC_ID">
+	  <!--taxa subgenerico-->
+		<b><i><TMPL_VAR NAME="SPECIE"></i> <TMPL_VAR NAME="AUTHOR"></b>
+			<TMPL_IF NAME="INFRASPECIFIC">
+				<TMPL_VAR NAME="INFRASPECIFIC_FLAG"> <b><i><TMPL_VAR NAME="INFRASPECIFIC_EPITHET"></i> <TMPL_VAR NAME="INFRASPECIFIC_AUTHOR"></b>
+			</TMPL_IF>
+			<TMPL_IF NAME="HYBRID">
+				<b><TMPL_VAR NAME="HYBRID_FLAG"> <i><TMPL_VAR NAME="HYBRID_GENUS"> <TMPL_VAR NAME="HYBRID_SPECIE"></i> <TMPL_VAR NAME="HYBRID_AUTHOR"></b>
+			</TMPL_IF>
+	<TMPL_ELSE>
+	<!--author de genero-->
+		<b><TMPL_VAR NAME="GENUS_AUTHOR"></b>
+	</TMPL_IF>
+		<TMPL_IF NAME="FAMILIA_ID">
+			<TMPL_IF NAME="FAMILY">
+			<span class="taxonomy_space">
+			[
+			  <TMPL_IF NAME="REGNUM">
+			  <b><TMPL_VAR NAME="REGNUM">:</b>
+			  </TMPL_IF>
+			  <b><i><TMPL_VAR NAME="FAMILY"></i> <!-- <TMPL_VAR NAME="FAMILY_AUTHOR"> --></b>
+			  <TMPL_IF NAME="HYBRID_FAMILY">
+				<TMPL_VAR NAME="HYBRID_FLAG"> <b><i><TMPL_VAR NAME="HYBRID_FAMILY"></i></b>
+			  </TMPL_IF>
+			] 
+			</span>
+			</TMPL_IF>
+		</TMPL_IF>
+	<TMPL_IF NAME="TAXA_COUNT">
+		<div class="taxonomy_note">[especimenes identificados: total <TMPL_VAR NAME="TAXA_COUNT">, identificación preferida <TMPL_VAR NAME="PREFERRED_TAXA_COUNT">]</div>
+	</TMPL_IF>
+	  <TMPL_IF NAME="GENUS_COMMENT">
+		<div class="taxonomy_note"><TMPL_VAR NAME="GENUS_COMMENT"></div>
+	  </TMPL_IF>
+	   <TMPL_IF NAME="SUBGENERIC_COMMENT">
+		<div class="taxonomy_note"><TMPL_VAR NAME="SUBGENERIC_COMMENT"></div>
+	  </TMPL_IF>
+	  </div>
+	  <TMPL_IF NAME="STATUS_LIST">
+	  <div class="taxon_status_list">
+		<TMPL_LOOP NAME="STATUS_LIST">
+		<span><!-- <TMPL_VAR NAME="SUBGENERIC_ID"> --><!-- <TMPL_VAR NAME="PUBID"> -->
+		<b>&#187;</b>&nbsp;<TMPL_IF NAME="PUBDATE">[<TMPL_VAR NAME="PUBDATE">]&nbsp;</TMPL_IF><TMPL_VAR NAME="PUBABBREVIATION">: <TMPL_VAR NAME="STATUS">
+		<TMPL_IF NAME="STATUS_COMMENT"><span class="taxonomy_note">(<TMPL_VAR NAME="STATUS_COMMENT">)</span></TMPL_IF>
+		</span><br />
+		</TMPL_LOOP>
+	  </div>
+	</TMPL_IF>
+</TMPL_LOOP>
+
+<TMPL_ELSE>
+<!-- normal (full) taxonomy view -->
+<TMPL_LOOP NAME="TAXONOMY_LIST">
+<TMPL_IF NAME="FAMILIA_ID">
+	<TMPL_IF NAME="REGNUM">
+	  <div class="taxon_regnum">
+	  Reino: <b><i><TMPL_VAR NAME="REGNUM"></i></b>
+	   <TMPL_IF NAME="REGNUM_COMMENT">
+		<div class="taxonomy_note"><TMPL_VAR NAME="REGNUM_COMMENT"></div>
+	  </TMPL_IF>
+	  </div>
+	</TMPL_IF>
+	<TMPL_IF NAME="PHYLUM">
+	  <div class="taxon_phylum">
+	  División: <b><i><TMPL_VAR NAME="PHYLUM"></i></b>
+	  </div>
+	</TMPL_IF>
+	<TMPL_IF NAME="CLASSIS">
+	  <div class="taxon_classis">
+	  Clase: <b><i><TMPL_VAR NAME="CLASSIS"></i></b>
+	  </div>
+	</TMPL_IF>
+	<TMPL_IF NAME="ORDO">
+	<div class="taxon_ordo">
+	  Orden: <b><i><TMPL_VAR NAME="ORDO"></i></b>
+	  </div>
+	</TMPL_IF>
+	<TMPL_IF NAME="FAMILY">
+	  <div class="taxon_familia">
+	  Familia: <b><i><TMPL_VAR NAME="FAMILY"></i> <TMPL_VAR NAME="FAMILY_AUTHOR"></b>
+	  <span class="taxonomy_button">
+	  <a href="http://mobot.mobot.org/cgi-bin/search_vast?name=<TMPL_VAR NAME="FAMILY">"  target="_blank"><img src="../graphics/icon_tropicos.png" alt="Buscar familia en W3TROPICOS" height="18" width="18" border="0" /></a>
+	  <a href="http://www.ipni.org/ipni/advPlantNameSearch.do?output_format=full&find_rankToReturn=fam&find_family=<TMPL_VAR NAME="FAMILY">"  target="_blank"><img src="../graphics/icon_ipni.png" alt="Buscar familia en IPNI" height="16" width="16" border="0" /></a>
+	  <a href="http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=<TMPL_VAR NAME="FAMILY">&search_kingdom=every&search_span=exactly_for&categories=All&source=html&search_credRating=All"  target="_blank"><img src="../graphics/icon_itis.png" alt="Buscar familia en ITIS" height="16" width="16" border="0" /></a>
+	  </span>
+	  <TMPL_IF NAME="FAMILY_COMMENT">
+		<div class="taxonomy_note"><TMPL_VAR NAME="FAMILY_COMMENT"></div>
+	  </TMPL_IF>
+	  <TMPL_IF NAME="HYBRID_FAMILY">
+		<br />Familia de segundo genero del hibrido: <TMPL_VAR NAME="HYBRID_FLAG"> <b><i><TMPL_VAR NAME="HYBRID_FAMILY"></i></b>
+		<span class="taxonomy_button">
+		<a href="http://mobot.mobot.org/cgi-bin/search_vast?name=<TMPL_VAR NAME="HYBRID_FAMILY">"  target="_blank"><img src="../graphics/icon_tropicos.png" alt="Buscar segunda familia del hibrido en W3TROPICOS" height="18" width="18" border="0" /></a>
+		<a href="http://www.ipni.org/ipni/advPlantNameSearch.do?output_format=full&find_rankToReturn=fam&find_family=<TMPL_VAR NAME="HYBRID_FAMILY">"  target="_blank"><img src="../graphics/icon_ipni.png" alt="Buscar segunda familia del hibrido en IPNI" height="16" width="16" border="0" /></a>
+		<a href="http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=<TMPL_VAR NAME="HYBRID_FAMILY">&search_kingdom=every&search_span=exactly_for&categories=All&source=html&search_credRating=All"  target="_blank"><img src="../graphics/icon_itis.png" alt="Buscar segunda familia del hibrido en ITIS" height="16" width="16" border="0" /></a>
+		</span>
+	  </TMPL_IF>	  
+	  </div>
+	</TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="GENUS_ID">
+	<TMPL_IF NAME="GENUS">
+	  <div class="taxon_genus">
+	  Genero: <b><i><TMPL_VAR NAME="GENUS"></i> <TMPL_VAR NAME="GENUS_AUTHOR"></b>
+	  <span class="taxonomy_button">
+	  <a href="http://mobot.mobot.org/cgi-bin/search_vast?name=<TMPL_VAR NAME="GENUS">"  target="_blank"><img src="../graphics/icon_tropicos.png" alt="Buscar genero en W3TROPICOS" height="18" width="18" border="0" /></a>	  
+	  <a href="http://www.ipni.org/ipni/advPlantNameSearch.do?output_format=full&find_rankToReturn=gen&find_genus=<TMPL_VAR NAME="GENUS">"  target="_blank"><img src="../graphics/icon_ipni.png" alt="Buscar genero en IPNI" height="16" width="16" border="0" /></a>
+	  <a href="http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=<TMPL_VAR NAME="GENUS">&search_kingdom=every&search_span=exactly_for&categories=All&source=html&search_credRating=All"  target="_blank"><img src="../graphics/icon_itis.png" alt="Buscar genero en ITIS" height="16" width="16" border="0" /></a>		  		
+	  </span>
+	  <TMPL_IF NAME="GENUS_COMMENT">
+		<div class="taxonomy_note"><TMPL_VAR NAME="GENUS_COMMENT"></div>
+	  </TMPL_IF>
+	  <TMPL_IF NAME="HYBRID_FAMILY">
+		<br />Segundo genero del hibrido: <TMPL_VAR NAME="HYBRID_FLAG"> <b><i><TMPL_VAR NAME="HYBRID_GENUS"></i></b>
+		<span class="taxonomy_button">
+		<a href="http://mobot.mobot.org/cgi-bin/search_vast?name=<TMPL_VAR NAME="HYBRID_GENUS">"  target="_blank"><img src="../graphics/icon_tropicos.png" alt="Buscar segundo genero del hibrido en W3TROPICOS" height="18" width="18" border="0" /></a>	  
+		<a href="http://www.ipni.org/ipni/advPlantNameSearch.do?output_format=full&find_rankToReturn=gen&find_genus=<TMPL_VAR NAME="HYBRID_GENUS">"  target="_blank"><img src="../graphics/icon_ipni.png" alt="Buscar segundo genero del hibrido en IPNI" height="16" width="16" border="0" /></a>
+		<a href="http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=<TMPL_VAR NAME="HYBRID_GENUS">&search_kingdom=every&search_span=exactly_for&categories=All&source=html&search_credRating=All"  target="_blank"><img src="../graphics/icon_itis.png" alt="Buscar segundo genero del hibrido en ITIS" height="16" width="16" border="0" /></a>		  		
+		</span>
+	  </TMPL_IF>
+	  </div>
+	</TMPL_IF>
+</TMPL_IF>
+	  
+<TMPL_IF NAME="SUBGENERIC_ID">
+	<div class="taxon_subgeneric">
+		<span class="taxonomy_space">
+		<TMPL_IF NAME="SUBGENERIC_ID">
+		<a href="/cgi-bin/ibug_list.cgi?
+		<TMPL_IF NAME="FAMILIA">family=<TMPL_VAR NAME="FAMILIA">&</TMPL_IF>
+		<TMPL_IF NAME="GENUS">genus=<TMPL_VAR NAME="GENUS">&</TMPL_IF>
+		<TMPL_IF NAME="SPECIE">specie=<TMPL_VAR NAME="SPECIE">&</TMPL_IF>
+		">		
+		<TMPL_ELSE>
+		<a href="/cgi-bin/ibug_list.cgi?
+		<TMPL_IF NAME="FAMILIA">family=<TMPL_VAR NAME="FAMILIA">&</TMPL_IF>
+		<TMPL_IF NAME="GENUS">genus=<TMPL_VAR NAME="GENUS">&</TMPL_IF>
+		">		
+		</TMPL_IF>
+		<img src="../graphics/icon_specimenlist.png" alt="consultar registros de colecta" height="16" width="16" border="0" />
+		</a>
+		</span>
+	  <b><i><TMPL_VAR NAME="GENUS"> <TMPL_VAR NAME="SPECIE"></i> <TMPL_VAR NAME="AUTHOR"></b>
+	  <TMPL_IF NAME="INFRASPECIFIC">
+		<TMPL_VAR NAME="INFRASPECIFIC_FLAG"> <b><i><TMPL_VAR NAME="INFRASPECIFIC_EPITHET"></i> <TMPL_VAR NAME="INFRASPECIFIC_AUTHOR"></b>
+	  </TMPL_IF>
+		<TMPL_IF NAME="HYBRID">
+		<b><TMPL_VAR NAME="HYBRID_FLAG"> <i><TMPL_VAR NAME="HYBRID_GENUS"> <TMPL_VAR NAME="HYBRID_SPECIE"></i> <TMPL_VAR NAME="HYBRID_AUTHOR"></b>
+		</TMPL_IF>
+
+	  <span class="taxonomy_button">
+	  <TMPL_IF NAME="INFRASPECIFIC">
+		  <TMPL_IF NAME="HYBRID">
+		  <a href="http://mobot.mobot.org/cgi-bin/search_vast?name=<TMPL_VAR NAME="GENUS">+<TMPL_VAR NAME="SPECIE">+<TMPL_VAR NAME="INFRASPECIFIC_EPITHET">"  target="_blank"><img src="../graphics/icon_tropicos.png" alt="Buscar taxon infraespecifico en W3TROPICOS" height="18" width="18" border="0" /></a>	  
+		  <a href="http://www.ipni.org/ipni/advPlantNameSearch.do?output_format=full&find_rankToReturn=all&find_isHybrid=on&find_genus=<TMPL_VAR NAME="GENUS">&find_species=<TMPL_VAR NAME="SPECIE">&find_infraspecies=<TMPL_VAR NAME="INFRASPECIFIC_EPITHET">"  target="_blank"><img src="../graphics/icon_ipni.png" alt="Buscar taxon infraespecifico en IPNI" height="16" width="16" border="0" /></a>
+		  <TMPL_ELSE>
+		  <a href="http://mobot.mobot.org/cgi-bin/search_vast?name=<TMPL_VAR NAME="GENUS">+<TMPL_VAR NAME="SPECIE">+<TMPL_VAR NAME="INFRASPECIFIC_EPITHET">"  target="_blank"><img src="../graphics/icon_tropicos.png" alt="Buscar taxon infraespecifico en W3TROPICOS" height="18" width="18" border="0" /></a>	  
+		  <a href="http://www.ipni.org/ipni/advPlantNameSearch.do?output_format=full&find_rankToReturn=infraspec&find_genus=<TMPL_VAR NAME="GENUS">&find_species=<TMPL_VAR NAME="SPECIE">&find_infraspecies=<TMPL_VAR NAME="INFRASPECIFIC_EPITHET">"  target="_blank"><img src="../graphics/icon_ipni.png" alt="Buscar taxon infraespecifico en IPNI" height="16" width="16" border="0" /></a>
+		  <a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=<TMPL_VAR NAME="GENUS">+<TMPL_VAR NAME="SPECIE">+<TMPL_VAR NAME="INFRASPECIFIC_EPITHET">"  target="_blank"><img src="../graphics/icon_ncbi.png" alt="Buscar taxon infraespecifico en NCBI" height="16" width="16" border="0" /></a>
+		  <a href="http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=<TMPL_VAR NAME="GENUS">%20<TMPL_VAR NAME="SPECIE">%20<TMPL_VAR NAME="INFRASPECIFIC_EPITHET">&search_kingdom=every&search_span=exactly_for&categories=All&source=html&search_credRating=All"  target="_blank"><img src="../graphics/icon_itis.png" alt="Buscar taxon infraespecifico en ITIS" height="16" width="16" border="0" /></a>		  
+		  </TMPL_IF>
+	  <TMPL_ELSE>
+		  <TMPL_IF NAME="HYBRID">
+		  <a href="http://mobot.mobot.org/cgi-bin/search_vast?name=<TMPL_VAR NAME="GENUS">+<TMPL_VAR NAME="SPECIE">"  target="_blank"><img src="../graphics/icon_tropicos.png" alt="Buscar especie en W3TROPICOS" height="18" width="18" border="0" /></a>	  
+		  <a href="http://www.ipni.org/ipni/advPlantNameSearch.do?output_format=full&find_rankToReturn=all&find_isHybrid=on&find_genus=<TMPL_VAR NAME="GENUS">&find_species=<TMPL_VAR NAME="SPECIE">"  target="_blank"><img src="../graphics/icon_ipni.png" alt="Buscar especie en IPNI" height="16" width="16" border="0" /></a>
+		  <TMPL_ELSE>
+		  <a href="http://mobot.mobot.org/cgi-bin/search_vast?name=<TMPL_VAR NAME="GENUS">+<TMPL_VAR NAME="SPECIE">"  target="_blank"><img src="../graphics/icon_tropicos.png" alt="Buscar especie en W3TROPICOS" height="18" width="18" border="0" /></a>	  
+		  <a href="http://www.ipni.org/ipni/advPlantNameSearch.do?output_format=full&find_rankToReturn=spec&find_genus=<TMPL_VAR NAME="GENUS">&find_species=<TMPL_VAR NAME="SPECIE">"  target="_blank"><img src="../graphics/icon_ipni.png" alt="Buscar especie en IPNI" height="16" width="16" border="0" /></a>
+		  <a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=<TMPL_VAR NAME="GENUS">+<TMPL_VAR NAME="SPECIE">"  target="_blank"><img src="../graphics/icon_ncbi.png" alt="Buscar especie en NCBI" height="16" width="16" border="0" /></a>
+		  <a href="http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=<TMPL_VAR NAME="GENUS">%20<TMPL_VAR NAME="SPECIE">&search_kingdom=every&search_span=exactly_for&categories=All&source=html&search_credRating=All"  target="_blank"><img src="../graphics/icon_itis.png" alt="Buscar especie en ITIS" height="16" width="16" border="0" /></a>		  
+		  </TMPL_IF>
+	  </TMPL_IF>
+	  </span>	  
+	   <TMPL_IF NAME="TAXA_COUNT">
+		<div class="taxonomy_note">especimenes identificados: total <TMPL_VAR NAME="TAXA_COUNT">, identificación preferida <TMPL_VAR NAME="PREFERRED_TAXA_COUNT"></div>
+	   </TMPL_IF>
+	   <TMPL_IF NAME="SUBGENERIC_COMMENT">
+		<div class="taxonomy_note"><TMPL_VAR NAME="SUBGENERIC_COMMENT"></div>
+	  </TMPL_IF>
+	  </div>
+	  
+	  <TMPL_IF NAME="STATUS_LIST">
+	  <div class="taxon_status_list">
+		<TMPL_LOOP NAME="STATUS_LIST">
+		<span><!--<TMPL_VAR NAME="SUBGENERIC_ID">--><!--<TMPL_VAR NAME="PUBID">-->
+		<b>&#187;</b>&nbsp;<TMPL_IF NAME="PUBDATE">[<TMPL_VAR NAME="PUBDATE">]&nbsp;</TMPL_IF><TMPL_VAR NAME="PUBABBREVIATION">: <TMPL_VAR NAME="STATUS">
+		<TMPL_IF NAME="STATUS_COMMENT"><span class="taxonomy_note">(<TMPL_VAR NAME="STATUS_COMMENT">)</span></TMPL_IF>
+		</span><br />
+		</TMPL_LOOP>
+	  </div>
+	</TMPL_IF>
+
+</TMPL_IF>
+</TMPL_LOOP>
+</TMPL_IF>
+
+<TMPL_IF NAME="NO_CLAUSE">
+<table width="100%">
+  <tr><td width="200px">&nbsp;
+  </td><td width="400px">
+  <form action="/cgi-bin/taxonomy.cgi" method="post">
+    <fieldset>
+    <legend>Buscar taxa por:</legend>
+    <div class="main_form">
+      <span class="main_form"><label for="familia">Familia:</label></span>
+      <input type="text" size="15" maxlength="40" alt="familia" name="familia" />
+      <br />
+      <span class="main_form"><label for="genus">Genero:</label></span>
+      <input type="text" size="15" maxlength="40" alt="genero" name="genus" />
+      <br />
+      <span class="main_form"><label for="specie">Especie:</label></span>
+      <input type="text" size="15" maxlength="40" alt="especie" name="specie" />
+      <br />
+      <span class="main_form"><label for="infraspecific_epithet">Epiteto infraespecifico:</label></span>
+      <input type="text" size="15" maxlength="40" alt="epiteto infraespecifico" name="infraspecific_epithet" />
+      <br />
+       <input type="submit" class="searchbutton" value="Buscar" />
+    </div>
+    <div class="taxonomy_note">* Es posible utilizar comodínes % y _. <a href="/cgi-bin/ibug.cgi?help=1#comodines" target="_blank">ayuda <img src="../graphics/icon_external.png" height="10" width="10" border="0" /></a></div>
+    </fieldset>
+  </form>
+  </td><td width="200px">&nbsp;
+  </td></tr>
+</table>
+</TMPL_IF>

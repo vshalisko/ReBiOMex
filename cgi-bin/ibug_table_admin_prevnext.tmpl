@@ -1,0 +1,11 @@
+<!-- table prev/next -->
+<div class="prevnext">
+<TMPL_IF NAME="CURRENT_UNIQUE">
+[linea 1]
+<TMPL_ELSE>
+<TMPL_IF NAME="NO_PREVIOUS_FLAG"><TMPL_ELSE><a href="/cgi-bin/admin.cgi?<TMPL_VAR NAME="SEARCH_STRING">action=search&position=<TMPL_VAR NAME="PREVIOUS">&table=<TMPL_VAR NAME="TABLE_NAME">">&lt;&lt;&lt;atras</a></TMPL_IF> 
+[lineas <TMPL_VAR NAME="CURRENT_LOW">...<TMPL_VAR NAME="CURRENT_HIGH">] 
+<TMPL_IF NAME="NEXT"><a href="/cgi-bin/admin.cgi?<TMPL_VAR NAME="SEARCH_STRING">action=search&position=<TMPL_VAR NAME="NEXT">&table=<TMPL_VAR NAME="TABLE_NAME">">adelante&gt;&gt;&gt;</a></TMPL_IF>
+</TMPL_IF>
+</div>
+<!-- end of table prev/next -->

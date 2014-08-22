@@ -1,0 +1,222 @@
+<!-- user access administration menu -->
+<TMPL_IF NAME="USER_LIST">
+	<TMPL_IF NAME="LOGIN_EDIT">
+			<!-- user access edit interface -->
+			<div class="heading">Modificacion de los parametros de acceso del usuario</div>
+			<table class="style1" width="100%">
+				<tr>
+					<th>User_id</th>
+					<th>Nombre del usuario						
+						<div class="note">* Nombre completo del usuario se puede modificar seleccionando la opcion de modificacion de la tabla de usuarios</div>
+					</th>
+					<th>Estatus actual de la cuenta de acceso del usuario</th>
+					<th>Login</th>
+					<th>Contraseña</th>
+					<th>Derechos de acceso del usuario</th>
+					<th>Acciones</th>
+				</tr>
+				<TMPL_LOOP NAME="USER_LIST">
+				<!-- <TMPL_VAR NAME="SCRIPT_NAME">  -->
+				<tr>
+				<form action="/cgi-bin/admin.cgi" method="post">
+					<input type="hidden" name="user_access" value="1" />
+					<input type="hidden" name="update_login" value="1" />
+					<input type="hidden" name="search_user" value="<TMPL_VAR NAME="USER_ID">" />
+					<td><TMPL_VAR NAME="USER_ID"></td>
+					<td>
+						<TMPL_VAR NAME="USER_REAL_NAME">
+					</td>
+					<td><TMPL_IF NAME="USER_ACCESS">
+							usuario registrado como: <TMPL_VAR NAME="USER_ACCESS">
+						<TMPL_ELSE>
+							usuario sin derechos de acceso registrados
+						</TMPL_IF>
+					</td>
+					<td>
+						<TMPL_IF NAME="USER_LOGIN_PROBLEM">
+							
+							<input class="problem" type="text" size="10" maxlength="30" alt="login del usuario" name="new_login" value="<TMPL_VAR NAME="USER_NAME">"/>
+							<span class="bottom_error">
+								<img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />
+								Login especificado esta vacio o ya esta usado para otro usuario de sistema. Especifice otro login.
+							</span>
+						<TMPL_ELSE>
+							<input type="text" size="10" maxlength="30" alt="login del usuario" name="new_login" value="<TMPL_VAR NAME="USER_NAME">"/>
+						</TMPL_IF>
+					</td>
+					<td>
+						<TMPL_IF NAME="USER_PASSWORD_PROBLEM">
+							<br />contraseña:
+							<br /><input type="password" size="10" maxlength="30" alt="pasword del usuario" name="new_password" value="<TMPL_VAR NAME="USER_PASSWORD">"/>
+							<br />confirmar:
+							<br /><input type="password" size="10" maxlength="30" alt="pasword del usuario" name="confirm_new_password" />							
+							<span class="bottom_error">
+								<img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />
+								Contraseña especificada no cumple con los requisitos establecidos para contraseñas en sistema: contiene menos que 7 characteres, esta vacia o no coincide con su confirmación.
+							</span>
+						<TMPL_ELSE>
+							<br />contraseña:
+							<br /><input type="password" size="10" maxlength="30" alt="pasword del usuario" name="new_password" value="<TMPL_VAR NAME="USER_PASSWORD">"/>
+							<br />confirmar:
+							<br /><input type="password" size="10" maxlength="30" alt="pasword del usuario" name="confirm_new_password" />
+						</TMPL_IF>
+					</td>
+					<td>
+						<TMPL_IF NAME="USER_ACCESS_PROBLEM">
+							<select class="problem" size="1" name="new_access" alt="derechos de acceso del usuario" value="<TMPL_VAR NAME="USER_ACCESS">">
+						<TMPL_ELSE>
+							<select size="1" name="new_access" alt="derechos de acceso del usuario" value="<TMPL_VAR NAME="USER_ACCESS">">
+						</TMPL_IF>
+							<TMPL_IF NAME="USER_ACCESS_ADMIN"><option selected>admin</option><TMPL_ELSE><option>admin</option></TMPL_IF>
+							<TMPL_IF NAME="USER_ACCESS_CURADOR"><option selected>curador</option><TMPL_ELSE><option>curador</option></TMPL_IF>
+							<TMPL_IF NAME="USER_ACCESS_INVESTIGADOR"><option selected>investigador</option><TMPL_ELSE><option>investigador</option></TMPL_IF>
+							<TMPL_IF NAME="USER_ACCESS_ESTUDIANTE"><option selected>estudiante</option><TMPL_ELSE><option>estudiante</option></TMPL_IF>
+							<TMPL_IF NAME="USER_ACCESS_LECTURALOCAL"><option selected>local-lectura</option><TMPL_ELSE><option>local-lectura</option></TMPL_IF>
+							<TMPL_IF NAME="USER_ACCESS_LECTURAWEB"><option selected>web-lectura</option><TMPL_ELSE><option>web-lectura</option></TMPL_IF>
+						</select>
+						<TMPL_IF NAME="USER_ACCESS_PROBLEM">
+							<span class="bottom_error">
+								<img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />
+								Existe una problema con cambio de derechos de acceso del usuario. Especifique derechos del acceso.
+							</span>
+						</TMPL_IF>
+					</td>
+					<td>
+						<TMPL_IF NAME="USER_REGISTER_TIME"></TMPL_IF>
+						<TMPL_IF NAME="USER_MODIFICATION_TIME"></TMPL_IF>
+						<TMPL_IF NAME="USER_LOGIN_TIME"></TMPL_IF>
+						<TMPL_IF NAME="USER_LOGIN_HOST"></TMPL_IF>
+						<TMPL_IF NAME="USER_REGISTER">
+							<input type="submit" class="formbutton" value="Registrar" />
+						<TMPL_ELSE>
+							<input type="submit" class="formbutton" value="Modificar" />
+						</TMPL_IF>
+						</form>
+						<form action="/cgi-bin/admin.cgi" method="post">
+							<input type="hidden" name="user_access" value="1" />
+							<input type="hidden" name="search_user" value="<TMPL_VAR NAME="USER_ID">" />
+							<input type="submit" class="formbutton" value="Cancelar" />
+						</form>	
+					</td>
+					
+				</tr>
+			</TMPL_LOOP>
+			</table>
+		
+	<TMPL_ELSE>
+			<div class="table_legend">
+				<img src="../graphics/icon_usradd.png" height="16" width="16" border="0" /> - agregar nueva cuenta de acceso del usuario
+				<br /><img src="../graphics/icon_usredit.png" height="16" width="16" border="0" /> - modificar parametros de cuenta de acceso del usuario<br />
+				<br /><img src="../graphics/icon_usrdrop.png" height="16" width="16" border="0" /> - eliminar cuenta de acceso del usuario
+			</div>
+			<TMPL_IF NAME="LOGIN_UPDATE">
+				<TMPL_IF NAME="LOGIN_UPDATE_SUCCESS">
+					<div class="heading">Fueron establecidos nuevos parametros de acceso del usuario.</div>
+				<TMPL_ELSE>
+					<div class="heading">Los parametros de acceso del usuario NO fueron modificados!</div>
+				</TMPL_IF>
+			<TMPL_ELSE>
+				<TMPL_IF NAME="LOGIN_DELETE">
+					<TMPL_IF NAME="LOGIN_DELETE_SUCCESS">
+						<div class="heading">Cuenta de acceso del usuario fue eliminada.</div>
+					<TMPL_ELSE>
+						<div class="heading">La cuenta de acceso del usuario NO fue eleminada!</div>
+					</TMPL_IF>
+
+				<TMPL_ELSE>
+					<div class="heading">Fueron encontrados los siguentes registros de los usuarios</div>
+				</TMPL_IF>
+			</TMPL_IF>
+			
+
+			<table class="style1" width="100%">
+			<tr>
+				<th>User_id</th>
+				<th>Login</th>
+				<th>Nombre del usuario</th>
+				<th>Derechos de acceso del usuario</th>
+				<th>Contraseña</th>
+				<th>Fecha de registro del usuario</th>
+				<th>Fecha de modificacion de acceso</th>
+				<th>Estatus actual de coneccion</th>
+				<th>Acciones</th>
+			</tr>
+			<TMPL_LOOP NAME="USER_LIST">
+			<tr>
+				<!-- <TMPL_VAR NAME="SCRIPT_NAME">  -->
+				<td><TMPL_VAR NAME="USER_ID"></td>
+				<td><TMPL_IF NAME="USER_NAME"><TMPL_VAR NAME="USER_NAME"><TMPL_ELSE>&nbsp;</TMPL_IF></td>
+				<td><TMPL_VAR NAME="USER_REAL_NAME"></td>
+				<td><TMPL_IF NAME="USER_ACCESS"><TMPL_VAR NAME="USER_ACCESS"><TMPL_ELSE>nivel de acceso no definido</TMPL_IF></td>
+				<td><TMPL_IF NAME="USER_PASSWORD">*****<TMPL_ELSE>contraseña no defenida</TMPL_IF></td>
+				<td><TMPL_VAR NAME="USER_REGISTER_TIME"></td>
+				<td><TMPL_IF NAME="USER_MODIFICATION_TIME"><TMPL_VAR NAME="USER_MODIFICATION_TIME"><TMPL_ELSE>&nbsp;</TMPL_IF></td>
+				<td>
+				<TMPL_IF NAME="USER_LOGIN_TIME">
+					conectado <TMPL_VAR NAME="USER_LOGIN_TIME"> 
+					<TMPL_IF NAME="USER_LOGIN_HOST">
+						desde <TMPL_VAR NAME="USER_LOGIN_HOST">
+					</TMPL_IF>
+				<TMPL_ELSE>
+					desconectado
+				</TMPL_IF>
+				</td>
+				<td>
+					<TMPL_IF NAME="USER_REGISTER">
+						<a href="/cgi-bin/admin.cgi?user_access=1&edit_login=1&search_user=<TMPL_VAR NAME="USER_ID">"><img src="../graphics/icon_usradd.png" alt="agregar cuenta del acceso para usuario" height="16" width="16" border="0" /></a>&nbsp;
+					<TMPL_ELSE>
+						<a href="/cgi-bin/admin.cgi?user_access=1&edit_login=1&search_user=<TMPL_VAR NAME="USER_ID">"><img src="../graphics/icon_usredit.png" alt="redactar parametros de acceso del usuario" height="16" width="16" border="0" /></a>&nbsp;
+						<a href="/cgi-bin/admin.cgi?user_access=1&delete_login=1&search_user=<TMPL_VAR NAME="USER_ID">"><img src="../graphics/icon_usrdrop.png" alt="eliminar cuenta del usuario" height="16" width="16" border="0" /></a>
+					</TMPL_IF>
+				</td>
+			</tr>
+			</TMPL_LOOP>
+			</table>
+	</TMPL_IF>
+<TMPL_ELSE>
+		<TMPL_IF NAME="USER_LIST_NO_MATCH">
+			<div class="heading">No fueron encontrados usuarios registrados en sistema con los parametros de busqueda especificados </div>
+		</TMPL_IF>
+</TMPL_IF>
+
+	<table width="100%">
+		<tr>
+			<td width="400px">
+			<form action="/cgi-bin/admin.cgi" method="post">
+			     <div>
+				<label for="submit">Regresar a menu inicial de interface de administrador</label>
+				<input type="submit" class="formbutton" value="Regresar" />
+			    </div>
+			 </form>
+			 
+			<form action="/cgi-bin/admin.cgi" method="post">
+			     <div>
+			     <label for="submit"><img src="../graphics/icon_usrlist.png" height="16" width="16" border="0" />Mostrar la tabla de todos los usuarios registrados en sistema</label>
+			      <input type="hidden" name="user_access" value="1" /><input type="hidden" name="search_user" value="all" /> <input type="submit" class="formbutton" value="Mostrar tabla" />
+			    </div>
+			 </form>
+
+			</td><td width="400px">
+			<form action="/cgi-bin/admin.cgi" method="post">
+			    <div class="unit_form">
+			    <fieldset>
+				<legend>Buscar usuarios para modificar/agregar acceso</legend>
+				<div class="main_form">
+					<label for="search_login">por su login </label>
+					<input type="text" size="10" maxlength="30" alt="login del ususrio para buscar" name="search_login" />
+					<br />
+					<label for="search_nombre">por su nombre </label>
+					<input type="text" size="10" maxlength="100" alt="nombre del ususrio para buscar" name="search_user_name" />
+					<br />
+					<label for="search_fecha">por fecha de modificacion de accesso (aaaa-mm-dd)</label>
+					<input type="text" size="10" maxlength="10" alt="fecha de registro del ususrio para buscar" name="search_user_access_date" />
+					<input type="hidden" name="user_access" value="1" />
+					<input type="submit" class="searchbutton" value="Buscar" />
+				</div>
+				<div class="note">* Es posible utilizar los simbolos % y _ como comodínes</div>
+			    </fieldset>
+			    </div>
+			 </form>
+			</td>
+		</tr>
+	</table>

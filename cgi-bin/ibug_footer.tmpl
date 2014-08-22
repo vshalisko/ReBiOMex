@@ -1,0 +1,22 @@
+</div>
+<!-- END MAIN -->
+
+<!-- BEGIN FOOTER -->
+<div class="bottom_box">
+	<div class="footer_box">
+	Base de datos ReBiOMex (ver. 1.4.1 BETA 2010-06-01). Datos: VITEX 2006, ReBiOMex 2007-2010.
+	</div>
+</div>
+<!-- END FOOTER -->
+
+   <TMPL_IF NAME="SQL_ERROR">
+          <div class="bottom_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" /><TMPL_VAR NAME="SQL_ERROR"></div>
+    </TMPL_IF>
+   <TMPL_IF NAME="WARNING">
+          <div class="bottom_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" /><TMPL_VAR NAME="WARNING"></div>
+    </TMPL_IF>
+
+</div>
+</body>
+</html>
+

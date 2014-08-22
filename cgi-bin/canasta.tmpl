@@ -1,0 +1,112 @@
+<h2>Contenido de la canasta</h2>
+
+<TMPL_IF NAME="ETIQUETES_NUMBER">
+  <img src="../graphics/icon_canasta.gif" height="16" width="19" alt="canasta" border="0" />&nbsp;En la canasta estan <TMPL_VAR NAME="ETIQUETES_NUMBER"> etiquetes. 
+  <a href="/cgi-bin/ibug_pdf.cgi?unit_list=<TMPL_VAR NAME="IMPRIMIR_ETIQUETES">">
+  <img src="../graphics/icon_pdf.gif" height="16" width="16" alt="icon .pdf" border="0" />&nbsp;Imprimir todas las etiquetas en la canasta</a>&nbsp;|&nbsp;
+  <a href="/cgi-bin/canasta.cgi?empty_canasta=1">Vaciar la canasta</a>
+<TMPL_ELSE>
+  <img src="../graphics/icon_canasta.gif" height="16" width="19" alt="canasta" border="0" />&nbsp;Canasta esta vacia.
+</TMPL_IF>
+
+
+
+
+<!-- depuration requiered, this fragment was just copied from list, and it worked -->
+
+<TMPL_IF NAME="MAIN_LIST">
+<h2>Los etiquetes en la canasta</h2>
+<div class="main_list">
+<ul>
+
+<TMPL_LOOP NAME="MAIN_LIST">
+
+  <li class="list_taxon_line">
+  
+  <TMPL_IF NAME="UNIT_ID">
+    <span class="list_unit_link">[<a href="/cgi-bin/ibug_unit.cgi?unit_id=<TMPL_VAR NAME="UNIT_ID">&identification_id=<TMPL_VAR NAME="IDENTIFICATION_ID">"><TMPL_VAR NAME="UNIT_ID"></a>]</span>
+  </TMPL_IF>
+
+
+  <TMPL_IF NAME="GENUS"> 
+  <span class="list_lower_taxon"><TMPL_VAR NAME="GENUS"> <TMPL_VAR NAME="IDENTIFICATION_CUALIFIER"> <TMPL_VAR NAME="SPECIE"></span> 
+  <TMPL_IF NAME="AUTHOR">
+      <span class="list_author"><TMPL_VAR NAME="AUTHOR"></span>
+  </TMPL_IF>
+    <TMPL_IF NAME="INFRASPECIFIC_EPITHET">
+      <TMPL_VAR NAME="INFRASPECIFIC_FLAG"> <span class="list_lower_taxon"><TMPL_VAR NAME="INFRASPECIFIC_EPITHET"></span> <span class="list_author"><TMPL_VAR NAME="INFRASPECIFIC_AUTHOR"></span>
+    </TMPL_IF>
+    <TMPL_IF NAME="NAME_ADDENDUM">
+      <span class="list_lower_taxon"><TMPL_VAR NAME="NAME_ADDENDUM"></span>
+    </TMPL_IF>
+  </TMPL_IF>
+
+
+  <TMPL_IF NAME="HYBRID_SPECIE">
+  <TMPL_VAR NAME="HYBRID_FLAG"> <span class="list_lower_taxon"><TMPL_VAR NAME="HYBRID_GENUS"><TMPL_VAR NAME="HYBRID_SPECIE"></span> <span class="list_author"><TMPL_VAR NAME="HYBRID_AUTHOR"></span>
+  </TMPL_IF>
+
+  <TMPL_IF NAME="FAMILIA">
+  (<span class="list_familia"><TMPL_VAR NAME="FAMILIA"></span>)
+  </TMPL_IF>
+
+  <TMPL_IF NAME="COLLECTOR">
+  <div class="list_collecting_details">Col: 
+  <span class="list_collector"><TMPL_VAR NAME="COLLECTOR"> <TMPL_VAR NAME="COLLECTOR_FIELD_NUMBER"></span> 
+    <TMPL_IF NAME="COLLECTING_DATE">
+      (<TMPL_VAR NAME="COLLECTING_DATE">)
+    </TMPL_IF>  
+  </div>
+  </TMPL_IF>
+
+  <TMPL_IF NAME="MUNICIPALITY"> 
+  <div class="list_collecting_details"> 
+  <TMPL_VAR NAME="MUNICIPALITY">, <TMPL_VAR NAME="STATE">, <TMPL_VAR NAME="COUNTRY">
+  </div>
+  <TMPL_ELSE>
+	<TMPL_IF NAME="STATE">
+	<div class="list_collecting_details">
+	<TMPL_VAR NAME="STATE">, <TMPL_VAR NAME="COUNTRY">
+	</div>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="COUNTRY">
+			<div class="list_collecting_details">Pais: <TMPL_VAR NAME="COUNTRY"></div>
+		</TMPL_IF>
+	</TMPL_IF>
+  </TMPL_IF>
+
+  <TMPL_IF NAME="HERBARIUM_ABBREVIATION"> 
+  <div class="list_specimen"> 
+      <TMPL_IF NAME="TYPE_STATUS"> 
+    <span class="type"><TMPL_VAR NAME="TYPE_STATUS"></span>
+  <TMPL_ELSE>
+    Espécimen 
+  </TMPL_IF>
+  almacenado en <TMPL_VAR NAME="HERBARIUM_ABBREVIATION"> 
+    <TMPL_IF NAME="HERBARIUM_NUMBER"> 
+    (No. <TMPL_VAR NAME="HERBARIUM_NUMBER">)
+  </TMPL_IF>
+
+  </div>
+  </TMPL_IF>
+
+  <TMPL_IF NAME="ETIQUETES_NUMBER">
+  <div class="etuquetes_number">Número de etiquetes: <TMPL_VAR NAME="ETIQUETES_NUMBER"></div>
+  </TMPL_IF>
+
+  <span class="canasta_actions">
+<TMPL_IF NAME="SPECIMEN_DEFINED">
+  <a href="/cgi-bin/canasta.cgi?mod_canasta=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b1b<TMPL_VAR NAME="SPECIMEN_ID">">+&nbsp;1</a>&nbsp;|&nbsp;
+  <a href="/cgi-bin/canasta.cgi?mod_canasta=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b-1b<TMPL_VAR NAME="SPECIMEN_ID">">-&nbsp;1</a>&nbsp;|&nbsp;
+  <a href="/cgi-bin/canasta.cgi?mod_canasta=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b-<TMPL_VAR NAME="ETIQUETES_NUMBER">b<TMPL_VAR NAME="SPECIMEN_ID">">eliminar todos</a>
+<TMPL_ELSE>
+  <a href="/cgi-bin/canasta.cgi?mod_canasta=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b1">+&nbsp;1</a>&nbsp;|&nbsp;
+  <a href="/cgi-bin/canasta.cgi?mod_canasta=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b-1">-&nbsp;1</a>&nbsp;|&nbsp;
+  <a href="/cgi-bin/canasta.cgi?mod_canasta=<TMPL_VAR NAME="UNIT_ID">b<TMPL_VAR NAME="IDENTIFICATION_ID">b-<TMPL_VAR NAME="ETIQUETES_NUMBER">">eliminar todos</a>
+</TMPL_IF>
+</span>
+
+</TMPL_LOOP>
+</ul>
+</div>
+</TMPL_IF>

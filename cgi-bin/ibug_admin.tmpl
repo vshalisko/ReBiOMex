@@ -1,0 +1,40 @@
+<h2>Interface de herramientas de administrador ReBiOMex</h2>
+<TMPL_IF NAME="USER_ACCESS_ADMINISTRATION">
+  <h2>Administracion de los niveles de acceso de usuarios</h2>
+  <TMPL_INCLUDE NAME="ibug_user_access_edit.tmpl">
+<TMPL_ELSE>
+  <TMPL_IF NAME="USER_ADMINISTRATION">
+    <h2>Admnistracion de las cuentas de usuarios</h2>
+    <TMPL_INCLUDE NAME="ibug_user_edit.tmpl">
+  <TMPL_ELSE>
+    <TMPL_IF NAME="SQL_EXECUTION">
+      <h2>Ejecucion del codigo SQL</h2>
+      <TMPL_INCLUDE NAME="ibug_sql_execution.tmpl">
+    <TMPL_ELSE>
+        <!-- initial administrator menu -->
+        <div>
+          <form action="/cgi-bin/admin.cgi" method="post">
+              <label for="submit"><img src="../graphics/icon_usrlist.png" height="16" width="16" border="0" />&nbsp;Administar los niveles acceso de usuarios</label>
+          <input type="hidden" name="user_access" value="1" /> 
+          <input type="submit" class="formbutton" value="Entrar" />
+          </form>
+        </div>
+        <div>
+          <form action="/cgi-bin/admin.cgi" method="post">
+              <label for="submit"><img src="../graphics/icon_usrlist.png" height="16" width="16" border="0" />&nbsp;Administar las cuentes de usuarios</label>
+          <input type="hidden" name="users" value="1" /> 
+          <input type="hidden" name="table" value="view_user">
+          <input type="submit" class="formbutton" value="Entrar" />
+              </form>
+        </div>
+        <div>
+          <form action="/cgi-bin/admin.cgi" method="post">
+              <label for="submit"><img src="../graphics/icon_sql.png" height="16" width="16" border="0" />&nbsp;Ejecutar codigo SQL</label>
+          <input type="hidden" name="sql" value="1" /> 
+          <input type="submit" class="formbutton" value="Entrar" />
+          </form>
+        </div>
+    </TMPL_IF>
+  </TMPL_IF>
+</TMPL_IF>
+

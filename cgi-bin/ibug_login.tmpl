@@ -1,0 +1,104 @@
+<TMPL_IF NAME="LOGIN_LOGOUT">
+	<h2><img src="../graphics/icon_usrcheck.png" height="16" width="16" border="0" />&nbsp;Logout del usuario <b><i><TMPL_VAR NAME="LOGIN_LOGOUT_NAME"></i></b> ha sido completado exitozamente.</h2>
+</TMPL_IF>
+
+<TMPL_IF NAME="LOGIN_LOGIN">
+	<h2><img src="../graphics/icon_usrcheck.png" height="16" width="16" border="0" />&nbsp;
+		<TMPL_IF NAME="USER_ACCESS">
+		Usuario <b><i><TMPL_VAR NAME="USER_LOGIN"></i></b> 
+		
+		<TMPL_IF NAME="USER_NOT_RECOGNISED">
+			<span class="red">NO REGISTRADO en sistema ReBiOMex</span> entro en modo de <i><TMPL_VAR NAME="USER_ACCESS"></i>.</h2>
+		<TMPL_ELSE>
+			 registrado en sistema ReBiOMex entro en modo de <i><TMPL_VAR NAME="USER_ACCESS"></i>.</h2>
+			<TMPL_IF NAME="USER_INSTITUTION">Usuario <b><i><TMPL_VAR NAME="USER_LOGIN"></i></b> es registrado como miembro de <b><i><TMPL_VAR NAME="USER_INSTITUTION"></i></b></TMPL_IF>.
+		</TMPL_IF>
+		
+		</TMPL_IF>
+	
+</TMPL_IF>
+
+<TMPL_IF NAME="LOGIN_LOGIN_FORM">
+	<TMPL_IF NAME="GUEST_LOGIN_CONFIRMATION">
+		<p><img src="../graphics/icon_userunknown.png" height="16" width="16" border="0" />Nombre del usuario (login) <b><i><TMPL_VAR NAME="USER_LOGIN"></i></b> <span class="red">NO</span> fue reconocido como registrado en la sistema ReBiOMex.
+			¿Desea Usted entrar con nombre de usuario (login) especificado en modo de <i><TMPL_VAR NAME="USER_ACCESS"></i>?
+		</p>
+		<form class="mainform" action="/cgi-bin/ibug.cgi" method="post">
+			<p>
+				<input type="hidden" name="user_password" value="guest" /> 
+				<input type="hidden" name="user_login" value="<TMPL_VAR NAME="USER_LOGIN">" /> 
+				<label for="submit">Entrar con nombre de usuario (login) especificado</label>
+				<input type="submit" class="formbutton" value="Entrar" />
+			</p>
+		</form>
+		<form class="mainform" action="/cgi-bin/ibug.cgi" method="post">
+		      <p>
+			<label for="submit">Regresar para entrar con otro nombre del usuario (login)</label>
+			<input type="submit" class="formbutton" value="Regresar" />
+		      </p>
+		</form>
+	<TMPL_ELSE>
+		<p><img src="../graphics/icon_usrcheck.png" height="16" width="16" border="0" />&nbsp;Nombre del usuario (login) 
+		<b><i><TMPL_VAR NAME="USER_LOGIN"></i></b> está registrado en la sistema
+		<TMPL_IF NAME="USER_FULL_NAME">
+			para <b><i><TMPL_VAR NAME="USER_FULL_NAME"></i></b>
+			(<TMPL_VAR NAME="USER_INSTITUTION">).
+		<TMPL_ELSE>
+			.
+		</TMPL_IF>
+		<!--
+		<TMPL_IF NAME="USER_ACCESS">
+			con derechos de <i><TMPL_VAR NAME="USER_ACCESS"></i>
+		</TMPL_IF>
+		-->
+		</p>
+		<div class="note">Si Usted es 
+		<TMPL_IF NAME="USER_FULL_NAME">
+			<b><i><TMPL_VAR NAME="USER_FULL_NAME"></i></b>
+		<TMPL_ELSE>
+			el usuario <b><i><TMPL_VAR NAME="USER_LOGIN"></i></b>
+		</TMPL_IF>		
+		favor de proceder con su contraseña. En caso contrario favor de regresar para especificar otro nombre del usuario (login) para entrar al sistema.</div>
+		
+		<form class="mainform" action="/cgi-bin/ibug.cgi" method="post">
+		<fieldset>
+			<legend>Entrar con contraseña</legend>
+			<p>
+				<label>Nombre del usuario (login):</label><TMPL_VAR NAME="USER_LOGIN">
+			</p>
+			<p>
+				<label for="user_password">Contraseña:</label>
+				<input 
+				<TMPL_IF NAME="PASSWORD_ERROR">class="problem" </TMPL_IF>
+				type="password" size="10" maxlength="50" alt="login" name="user_password" /> 
+				<TMPL_IF NAME="PASSWORD_ERROR">
+					<br /><span class="form_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />Contraseña introducida es incorrecta, intente otra vez.</span>
+				</TMPL_IF>
+			</p>
+			<input type="hidden" name="user_login" value="<TMPL_VAR NAME="USER_LOGIN">" />
+			<label for="submit">Entrar con nombre de usuario (login) especificado</label>
+			<input type="submit" class="formbutton" value="Entrar" />
+		</fieldset>
+		</form>
+		<form class="mainform" action="/cgi-bin/ibug.cgi" method="post">
+		      <p>
+			<label for="submit">Regresar para entrar con otro nombre de usuario</label>
+			<input type="submit" class="formbutton" value="Regresar" />
+		      </p>
+		</form>
+	</TMPL_IF>
+</TMPL_IF>
+
+<TMPL_IF NAME="LOGIN_FORM">
+      <form class="mainform" action="/cgi-bin/ibug.cgi" method="post">
+	<fieldset>
+		<legend>Especificar nombre del usuario</legend>
+		<p>		
+			<label for="user_login">Nombre del usuario (login):</label>
+			<input type="text" size="10" maxlength="50" alt="login" name="user_login" /> 
+		</p>
+		<label for="submit">&nbsp;</label>
+		<input class="formbutton" type="submit" value="Entrar" />
+	</fieldset>
+      </form>
+</TMPL_IF>

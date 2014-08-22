@@ -1,0 +1,442 @@
+<TMPL_IF NAME="MENU_OUTPUT">
+<!-- table actions selector -->
+	<TMPL_IF NAME="SEARCH_FIELDS">
+	<form class="searchform" action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	<fieldset>
+		<legend>Buscar registros en tabla &quot;<i><TMPL_VAR NAME="TABLE_NAME"></i>&quot; por</legend>
+		<TMPL_LOOP NAME="SEARCH_FIELDS">
+			<TMPL_IF NAME="REFERENCE_LINK">
+				<TMPL_IF NAME="TYPE_SELECTOR_EXTERNAL">
+					<p>
+					<!-- ------------------------------ ajax external selector  --------------------------- -->
+					<span class="main_form">
+					<label for="<TMPL_VAR NAME="FIELD_NAME">">
+					<TMPL_VAR NAME="FIELD_FULL_NAME">:
+					</label></span>
+					<span class="form_floating_bracket"><img src="../graphics/icon_bracket.png" height="56" width="18" border="0" /></span>
+					<span id="<TMPL_VAR NAME="FIELD_NAME">_box">
+					<!-- ajax controlled contents -->
+					<select name="<TMPL_VAR NAME="FIELD_NAME">" style="width: 215px;"
+					<TMPL_IF NAME="PROBLEM">class="problem"</TMPL_IF>
+					value="<TMPL_VAR NAME="FIELD_VALUE">" disabled="disabled">
+					<option selected value="<TMPL_VAR NAME="FIELD_VALUE">"><TMPL_VAR NAME="FIELD_VALUE"></option>
+					</select>
+					<!-- end of ajax controlled contents -->
+					</span>
+					<br />
+					<TMPL_IF NAME="REFERENCE_SEARCH">
+						<input type="text" size="8" maxlength="50" alt="login" name="<TMPL_VAR NAME="FIELD_NAME">_lookup" id="<TMPL_VAR NAME="FIELD_NAME">_lookup" />&nbsp;buscar en tabla de referencia&nbsp;<img src="../graphics/icon_renew.png" alt="renovar contenido de control" height="16" width="16" border="0" 
+						onclick="xmlhttpGet('/cgi-bin/ajax.cgi?mode=get_control_select&search_string=' + <TMPL_VAR NAME="FIELD_NAME">_lookup.value + '&field_name=<TMPL_VAR NAME="FIELD_NAME">&table=<TMPL_VAR NAME="REFERENCE_LINK">&id_column=<TMPL_VAR NAME="REFERENCE_ID_NAME">&column=<TMPL_VAR NAME="REFERENCE_FIELD_NAME">&actual_id=<TMPL_VAR NAME="FIELD_VALUE">&extended_search=<TMPL_VAR NAME="EXTENDED_SEARCH">','<TMPL_VAR NAME="FIELD_NAME">_box');"
+						/>
+					<TMPL_ELSE>
+						&nbsp;mostrar todos registros de tabla de referencia&nbsp;<img src="../graphics/icon_renew.png" alt="renovar contenido de control" height="16" width="16" border="0"
+						onclick="xmlhttpGet('/cgi-bin/ajax.cgi?mode=get_control_select&search_string=%&field_name=<TMPL_VAR NAME="FIELD_NAME">&table=<TMPL_VAR NAME="REFERENCE_LINK">&id_column=<TMPL_VAR NAME="REFERENCE_ID_NAME">&column=<TMPL_VAR NAME="REFERENCE_FIELD_NAME">&actual_id=<TMPL_VAR NAME="FIELD_VALUE">&extended_search=<TMPL_VAR NAME="EXTENDED_SEARCH">','<TMPL_VAR NAME="FIELD_NAME">_box')"
+						/>
+					</TMPL_IF>
+					&nbsp;<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=<TMPL_VAR NAME="REFERENCE_LINK">" target="_blank"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+					<!-- ------------------------------ end of ajax external selector  --------------------------- -->
+					</p>
+				<TMPL_ELSE>
+					<p>
+					<span class="main_form"><label for="<TMPL_VAR NAME="FIELD_NAME">"><TMPL_VAR NAME="FIELD_FULL_NAME">:</label></span>
+					<input type="text" size="30" alt="<TMPL_VAR NAME="FIELD_FULL_NAME">"
+					name="<TMPL_VAR NAME="FIELD_NAME">" />
+					&nbsp;<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=<TMPL_VAR NAME="REFERENCE_LINK">" target="_blank"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+					</p>
+				</TMPL_IF>
+			<TMPL_ELSE>
+				<p>
+				<span class="main_form"><label for="<TMPL_VAR NAME="FIELD_NAME">"><TMPL_VAR NAME="FIELD_FULL_NAME">:</label></span>
+				<input type="text" size="30" alt="<TMPL_VAR NAME="FIELD_FULL_NAME">"
+				name="<TMPL_VAR NAME="FIELD_NAME">" />
+				</p>
+			</TMPL_IF>
+		</TMPL_LOOP>
+		<p>
+		<input type="hidden" name="action" value="search">
+		<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+		<input type="submit" class="searchbutton" value="Buscar" />
+		</p>
+		<div class="note">* Es posible utilizar comodínes % y _. <a href="/cgi-bin/ibug.cgi?help=1#comodines" target="_blank">ayuda <img src="../graphics/icon_external.png" height="10" width="10" border="0" /></a></div>
+	</fieldset>
+	</form>
+	</TMPL_IF>
+<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	<div>
+	<label for="submit">Agregar nuevo registro</label>
+	<input type="hidden" name="action" value="add_new_form">
+	<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+	<input type="submit" class="formbutton" value="Agregar" />
+	</div>
+</form>
+<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	<div>
+	<label for="submit">Mostrar todos registros de la tabla</label>
+	<input type="hidden" name="action" value="search">
+	<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+	<input type="submit" class="formbutton" value="Mostrar" />
+	</div>
+</form>
+<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	<div>
+	<label for="submit">Regresar a menu de seleccion de tablas</label>
+	<input type="submit" class="formbutton" value="Regresar" />
+	</div> 
+</form>
+<!-- end of table actions selector -->
+</TMPL_IF>
+
+<TMPL_IF NAME="ACTION_DELETECONFIRM">
+	<fieldset>
+	<legend>Confirmar eliminacion del registro (ID <TMPL_VAR NAME="S_ID">)</legend>
+	<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	<div>
+		<label for="submit">Eliminar registro seleccionado</label>
+		<input type="hidden" name="action" value="eliminate">
+		<input type="hidden" name="confirmed" value="1">
+		<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+		<input type="hidden" name="s_id" value="<TMPL_VAR NAME="S_ID">">
+		<input type="submit" class="formbutton" value="Eliminar" />
+	</div>
+	</form>
+	<form action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+	<div>
+		<label for="submit">Cancelar la eliminacion del registro</label>
+		<input type="hidden" name="action" value="search">
+		<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+		<input type="hidden" name="s_id" value="<TMPL_VAR NAME="S_ID">">
+		<input type="submit" class="formbutton" value="Cancelar" />
+	</div>
+	</form>
+	</fieldset>
+</TMPL_IF>
+
+<TMPL_IF NAME="TABLE_OUTPUT">
+<!-- start of table output 
+variables
+S_ID: <TMPL_VAR NAME="S_ID">
+LAST_S_ID: <TMPL_VAR NAME="LAST_S_ID">
+S_1: <TMPL_VAR NAME="S_1">
+S_2: <TMPL_VAR NAME="S_2">
+S_3: <TMPL_VAR NAME="S_3">
+S_UNIT: <TMPL_VAR NAME="S_UNIT">
+-->
+
+<TMPL_IF NAME="TABLE">
+	<div class="table_legend"><img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" /> - modificar registro
+	<br /><img src="../graphics/icon_drop.png" alt="eliminar registro" height="16" width="16" border="0" /> - eliminar registro
+	<br /><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /> - revisar registro de referencia en tabla externa
+	</div>
+	<TMPL_INCLUDE NAME="ibug_table_prevnext.tmpl">
+
+	<TMPL_IF NAME="TABLE_SINGLE_LINE">
+		<table class="style3" width="1000px"><tr>
+		<!-- <TMPL_VAR NAME="WIDE_TABLE"> -->
+		<td width="300px"><table width="100%" class="style2">
+		<TMPL_LOOP NAME="TABLE_HEADER">
+			<tr><td align="right"><b><TMPL_VAR NAME="COLUMN_NAME">:</b></td></tr>
+		</TMPL_LOOP>
+		<TMPL_IF NAME="ACTION_SEARCH">
+			<tr><td align="right"><b>Acciones:</b></td></tr>
+		<TMPL_ELSE>
+			<tr><td align="right"><b>Acciones con registro seleccionado:</b></td></tr>
+		</TMPL_IF>
+		</table></td>
+		<TMPL_IF NAME="ACTION_SEARCH">
+		  <!-- table content for search request -->
+			<TMPL_LOOP NAME="TABLE">
+			<td width="700px"><table width="100%" class="style2">
+				<TMPL_LOOP NAME="TABLE_RAW">
+				<tr><td>
+				<TMPL_IF NAME="REFERENCE_LINK">
+					<TMPL_IF NAME="REFERENCE_STRING">
+						<span class="reference_string"><b>{</b><TMPL_VAR NAME="REFERENCE_STRING"><b>}</b></span>
+					</TMPL_IF>
+					&nbsp;<a target="_blanc" class="reference_button" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=search&table=<TMPL_VAR NAME="REFERENCE_LINK">&s_id=<TMPL_VAR NAME="FIELD">"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+					<TMPL_VAR NAME="FIELD">
+				<TMPL_ELSE>
+					<span class="table_value"><TMPL_VAR NAME="FIELD"></span>
+				</TMPL_IF>
+				</tr></td>
+				</TMPL_LOOP>
+			<tr><td>
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=modify_form&table=<TMPL_VAR NAME="TABLE_NAME">&s_id=<TMPL_VAR NAME="S_ID">"><img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" /></a>&nbsp;
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=eliminate&table=<TMPL_VAR NAME="TABLE_NAME">&s_id=<TMPL_VAR NAME="S_ID">"><img src="../graphics/icon_drop.png" alt="eliminar registro" height="16" width="16" border="0" /></a>&nbsp;
+			</tr></td>
+			</table></td>
+			</TMPL_LOOP>
+		<TMPL_ELSE>
+			<!-- table content in special cases such as report of exit in modification or add - originally without controls, but now with some of them -->
+			<TMPL_LOOP NAME="TABLE">
+			<td width="700px"><table width="100%" class="style2">
+				<TMPL_LOOP NAME="TABLE_RAW">
+				<tr><td>
+				<TMPL_IF NAME="REFERENCE_LINK">
+					<TMPL_IF NAME="REFERENCE_STRING">
+						<span class="reference_string"><b>{</b><TMPL_VAR NAME="REFERENCE_STRING"><b>}</b></span>
+					</TMPL_IF>
+					&nbsp;<a target="_blanc" class="reference_button" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=search&table=<TMPL_VAR NAME="REFERENCE_LINK">&s_id=<TMPL_VAR NAME="FIELD">"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+					<TMPL_VAR NAME="FIELD">
+				<TMPL_ELSE>
+					<span class="table_value"><TMPL_VAR NAME="FIELD"></span>
+				</TMPL_IF>
+				</tr></td>
+				</TMPL_LOOP>
+			<tr><td>
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=modify_form&table=<TMPL_VAR NAME="TABLE_NAME">&s_id=<TMPL_VAR NAME="S_ID">"><img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" /></a>&nbsp;
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=eliminate&table=<TMPL_VAR NAME="TABLE_NAME">&s_id=<TMPL_VAR NAME="S_ID">"><img src="../graphics/icon_drop.png" alt="eliminar registro" height="16" width="16" border="0" /></a>&nbsp;
+			</tr></td>
+			</table></td>
+			</TMPL_LOOP>
+		</TMPL_IF>
+		</tr></table>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="WIDE_TABLE"><table class="style1" width="1200px"><TMPL_ELSE><table class="style1" width="100%"></TMPL_IF>
+		<tr>
+		<TMPL_LOOP NAME="TABLE_HEADER">
+			<th><TMPL_VAR NAME="COLUMN_NAME"></th>
+		</TMPL_LOOP>
+		<TMPL_IF NAME="ACTION_SEARCH">
+			<th>Acciones</th>
+		<TMPL_ELSE>
+			<th>Acciones con registro seleccionado</th>
+		</TMPL_IF>
+		</tr>
+		<TMPL_IF NAME="ACTION_SEARCH">
+		<!-- table content for search request -->
+			<TMPL_LOOP NAME="TABLE">
+			<tr>  
+				<TMPL_LOOP NAME="TABLE_RAW">
+				<td>
+				<TMPL_VAR NAME="FIELD">
+				<TMPL_IF NAME="REFERENCE_LINK">
+					&nbsp;<a class="reference_button" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=search&table=<TMPL_VAR NAME="REFERENCE_LINK">&s_id=<TMPL_VAR NAME="FIELD">"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+				</TMPL_IF>
+				<TMPL_IF NAME="REFERENCE_STRING">
+					{<TMPL_VAR NAME="REFERENCE_STRING">}
+				</TMPL_IF>
+				</td>
+				</TMPL_LOOP>
+			<td>
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=modify_form&table=<TMPL_VAR NAME="TABLE_NAME">&s_id=<TMPL_VAR NAME="S_ID">"><img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" /></a>&nbsp;
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=eliminate&table=<TMPL_VAR NAME="TABLE_NAME">&s_id=<TMPL_VAR NAME="S_ID">"><img src="../graphics/icon_drop.png" alt="eliminar registro" height="16" width="16" border="0" /></a>&nbsp;
+			</td>
+			</tr>
+			</TMPL_LOOP>
+		<TMPL_ELSE>
+			<!-- table content in special cases such as report of exit in modification or add - originally without controls, but now with some of them -->
+			<TMPL_LOOP NAME="TABLE">
+			<tr>  
+				<TMPL_LOOP NAME="TABLE_RAW">
+				<td>
+				<TMPL_VAR NAME="FIELD">
+				<TMPL_IF NAME="REFERENCE_LINK">
+					&nbsp;<a class="reference_button" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=search&table=<TMPL_VAR NAME="REFERENCE_LINK">&s_id=<TMPL_VAR NAME="FIELD">"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+				</TMPL_IF>
+				<TMPL_IF NAME="REFERENCE_STRING">
+					{<TMPL_VAR NAME="REFERENCE_STRING">}
+				</TMPL_IF>
+				</td>
+				</TMPL_LOOP>
+			<td>
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=modify_form&table=<TMPL_VAR NAME="TABLE_NAME">&s_id=<TMPL_VAR NAME="S_ID">"><img src="../graphics/icon_edit.png" alt="redactar registro" height="16" width="16" border="0" /></a>&nbsp;
+			<a href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=eliminate&table=<TMPL_VAR NAME="TABLE_NAME">&s_id=<TMPL_VAR NAME="S_ID">"><img src="../graphics/icon_drop.png" alt="eliminar registro" height="16" width="16" border="0" /></a>&nbsp;
+			</td>
+			</tr>
+			</TMPL_LOOP>
+		</TMPL_IF>
+		</table>
+	</TMPL_IF>
+
+	<TMPL_INCLUDE NAME="ibug_table_prevnext.tmpl">
+</TMPL_IF>
+<!-- end of table output -->
+</TMPL_IF>
+
+<TMPL_IF NAME="FORM_OUTPUT">
+<!-- form output 
+variables
+S_ID: <TMPL_VAR NAME="S_ID">
+LAST_S_ID: <TMPL_VAR NAME="LAST_S_ID">
+S_1: <TMPL_VAR NAME="S_1">
+S_2: <TMPL_VAR NAME="S_2">
+S_3: <TMPL_VAR NAME="S_3">
+S_UNIT: <TMPL_VAR NAME="S_UNIT">
+-->
+<TMPL_IF NAME="FORM">
+<form class="modifyform" action="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">" method="post">
+<fieldset>
+<legend>Capturar/modificar registro</legend>
+<TMPL_LOOP NAME="FORM">
+	<p>
+	<label for="<TMPL_VAR NAME="FIELD_NAME">"><TMPL_VAR NAME="FIELD_FULL_NAME">:</label>
+	<TMPL_IF NAME="EDITABLE">
+		<TMPL_IF NAME="TYPE_FIELD">
+		<!-- ------------------------------ field --------------------------- -->
+			<TMPL_IF NAME="OBLIGATORY">*</TMPL_IF>
+			<input type="text" size="30" maxlength="<TMPL_VAR NAME="LENGTH">" alt="<TMPL_VAR NAME="FIELD_VALUE">"
+			<TMPL_IF NAME="PROBLEM">class="problem"</TMPL_IF> 
+			name="<TMPL_VAR NAME="FIELD_NAME">" value="<TMPL_VAR NAME="FIELD_VALUE">" />
+			<TMPL_IF NAME="REFERENCE_LINK">
+			&nbsp;R
+			<TMPL_IF NAME="FIELD_VALUE">
+			&nbsp;<a target="_blanc" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=search&table=<TMPL_VAR NAME="REFERENCE_LINK">&s_id=<TMPL_VAR NAME="FIELD_VALUE">"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+			<TMPL_ELSE>
+			&nbsp;<a target="_blanc" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=<TMPL_VAR NAME="REFERENCE_LINK">"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+			</TMPL_IF>
+			</TMPL_IF>
+			<TMPL_IF NAME="PROBLEM">
+			<br /><span class="form_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />&nbsp;<TMPL_VAR NAME="PROBLEM"></span>
+			</TMPL_IF>
+		<!-- ------------------------------ end field --------------------------- -->
+		<TMPL_ELSE>
+			<TMPL_IF NAME="TYPE_TEXT">
+			<!-- ------------------------------ text --------------------------- -->
+			<TMPL_IF NAME="OBLIGATORY">*</TMPL_IF>
+			<!-- textarea, should be without margin -->
+<textarea name="<TMPL_VAR NAME="FIELD_NAME">" 
+<TMPL_IF NAME="PROBLEM">class="problem"</TMPL_IF> 
+rows="3" cols="50" alt="<TMPL_VAR NAME="FIELD_VALUE">">
+<TMPL_VAR NAME="FIELD_VALUE"></textarea>
+			<TMPL_IF NAME="PROBLEM">
+			<br /><span class="form_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />&nbsp;<TMPL_VAR NAME="PROBLEM"></span>
+			</TMPL_IF>
+			<!-- ------------------------------ end text --------------------------- -->
+		<TMPL_ELSE>
+			<TMPL_IF NAME="TYPE_ENUM">
+			<!-- ------------------------------ enum or set or selector  --------------------------- -->
+			<TMPL_IF NAME="OBLIGATORY">*</TMPL_IF>
+			<select name="<TMPL_VAR NAME="FIELD_NAME">" 
+			<TMPL_IF NAME="PROBLEM">class="problem"</TMPL_IF>
+			<TMPL_IF NAME="MULTIPLE">multiple size="6"<TMPL_ELSE>size="1"</TMPL_IF>
+			alt="<TMPL_VAR NAME="FIELD_VALUE">" value="<TMPL_VAR NAME="FIELD_VALUE">">
+			<TMPL_LOOP NAME="TYPE_ENUM">
+			<TMPL_IF NAME="SELECTED">
+			<option selected class="form_option_actual" value="<TMPL_VAR NAME="ENUM_VALUE">">
+			<TMPL_ELSE>
+			<option value="<TMPL_VAR NAME="ENUM_VALUE">">
+			</TMPL_IF>
+			<TMPL_IF NAME="ENUM_TEXT"><TMPL_VAR NAME="ENUM_TEXT"><TMPL_ELSE><TMPL_VAR NAME="ENUM_VALUE"></TMPL_IF>
+			</option>
+			</TMPL_LOOP>
+			</select>
+			<TMPL_IF NAME="PROBLEM">
+			<br /><span class="form_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />&nbsp;<TMPL_VAR NAME="PROBLEM"></span>
+			</TMPL_IF>
+			<!-- ------------------------------ end enum or set or selector --------------------------- -->
+		<TMPL_ELSE>
+			<TMPL_IF NAME="TYPE_CHECKBOX">
+			<!-- ------------------------------ checkbox --------------------------- -->
+			<TMPL_IF NAME="OBLIGATORY">*</TMPL_IF>
+			<input type="checkbox" alt="<TMPL_VAR NAME="FIELD_VALUE">"  <TMPL_IF NAME="PROBLEM">class="problem"</TMPL_IF> name="<TMPL_VAR NAME="FIELD_NAME">" <TMPL_IF NAME="FIELD_VALUE">checked value="<TMPL_VAR NAME="FIELD_VALUE">"</TMPL_IF> />
+			<!-- <TMPL_VAR NAME="REFERENCE_LINK"> <TMPL_VAR NAME="LENGTH"> -->
+			<TMPL_IF NAME="PROBLEM">
+			<br /><span class="form_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />&nbsp;<TMPL_VAR NAME="PROBLEM"></span>
+			</TMPL_IF>        
+			<!-- ------------------------------ end checkbox --------------------------- -->
+		<TMPL_ELSE>
+			<TMPL_IF NAME="TYPE_SELECTOR_EXTERNAL">
+			<!-- ------------------------------ ajax external selector  --------------------------- -->
+			<TMPL_IF NAME="OBLIGATORY">*</TMPL_IF>
+			<!--<span class="form_floating_bracket"><img src="../graphics/icon_bracket.png" height="56" width="18" border="0" /></span>-->
+			<span id="<TMPL_VAR NAME="FIELD_NAME">_box">
+			<!-- ajax controlled contents -->
+			<select name="<TMPL_VAR NAME="FIELD_NAME">" style="width: 200px;"
+			<TMPL_IF NAME="PROBLEM">class="problem"</TMPL_IF>
+			value="<TMPL_VAR NAME="FIELD_VALUE">" disabled="disabled">
+			<option selected value="<TMPL_VAR NAME="FIELD_VALUE">"><TMPL_VAR NAME="FIELD_VALUE"></option>
+			</select>
+			<!-- end of ajax controlled contents -->
+			</span>
+			<TMPL_IF NAME="REFERENCE_LINK">
+				<br />
+				<!-- 
+				we should resolve one issue here: problem of actualizing of form contents with multiple concurenting requests, 
+				seems that xmlhttpGet object can mix results of several requests made in the same moment, but we can make some sequential request execution instead; 
+				 -->
+				<TMPL_IF NAME="REFERENCE_SEARCH">
+				<input type="text" size="8" maxlength="50" alt="login" name="<TMPL_VAR NAME="FIELD_NAME">_lookup" id="<TMPL_VAR NAME="FIELD_NAME">_lookup" />&nbsp;buscar en tabla de referencia&nbsp;<img src="../graphics/icon_renew.png" alt="renovar contenido de control" height="16" width="16" border="0" 
+				onclick="xmlhttpGet('/cgi-bin/ajax.cgi?mode=get_control_select&search_string=' + <TMPL_VAR NAME="FIELD_NAME">_lookup.value + '&field_name=<TMPL_VAR NAME="FIELD_NAME">&table=<TMPL_VAR NAME="REFERENCE_LINK">&id_column=<TMPL_VAR NAME="REFERENCE_ID_NAME">&column=<TMPL_VAR NAME="REFERENCE_FIELD_NAME">&actual_id=<TMPL_VAR NAME="FIELD_VALUE">&extended_search=<TMPL_VAR NAME="extended_search">','<TMPL_VAR NAME="FIELD_NAME">_box');"
+				/>
+				<TMPL_ELSE>
+				&nbsp;mostrar todos registros de tabla de referencia&nbsp;<img src="../graphics/icon_renew.png" alt="renovar contenido de control" height="16" width="16" border="0"
+				onclick="xmlhttpGet('/cgi-bin/ajax.cgi?mode=get_control_select&search_string=%&field_name=<TMPL_VAR NAME="FIELD_NAME">&table=<TMPL_VAR NAME="REFERENCE_LINK">&id_column=<TMPL_VAR NAME="REFERENCE_ID_NAME">&column=<TMPL_VAR NAME="REFERENCE_FIELD_NAME">&actual_id=<TMPL_VAR NAME="FIELD_VALUE">&extended_search=<TMPL_VAR NAME="extended_search">','<TMPL_VAR NAME="FIELD_NAME">_box')"
+				/>
+				</TMPL_IF>
+				&nbsp;abrir tabla de referencia
+				<TMPL_IF NAME="FIELD_VALUE">
+				&nbsp;<a target="_blank" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?action=search&table=<TMPL_VAR NAME="REFERENCE_LINK">&s_id=<TMPL_VAR NAME="FIELD_VALUE">"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+				<TMPL_ELSE>
+				&nbsp;<a target="_blank" href="/cgi-bin/<TMPL_VAR NAME="SCRIPT_NAME">?table=<TMPL_VAR NAME="REFERENCE_LINK">"><img src="../graphics/icon_select.png" alt="revisar registro" height="16" width="16" border="0" /></a>
+				</TMPL_IF>
+			</TMPL_IF>
+			
+			<script type="text/javascript">JavaScript:xmlhttpGet('/cgi-bin/ajax.cgi?mode=get_control_select&field_name=<TMPL_VAR NAME="FIELD_NAME">&table=<TMPL_VAR NAME="REFERENCE_LINK">&id_column=<TMPL_VAR NAME="REFERENCE_ID_NAME">&column=<TMPL_VAR NAME="REFERENCE_FIELD_NAME">&actual_id=<TMPL_VAR NAME="FIELD_VALUE">&extended_search=<TMPL_VAR NAME="extended_search">','<TMPL_VAR NAME="FIELD_NAME">_box');</script>
+			
+			<TMPL_IF NAME="PROBLEM">
+			  <br /><span class="form_error"><img src="../graphics/icon_error.png" height="16" width="16" alt="error" border="0" />&nbsp;<TMPL_VAR NAME="PROBLEM"></span>
+			</TMPL_IF>
+			<!-- ------------------------------ end ajax external selector --------------------------- -->
+		<TMPL_ELSE>
+			<!-- ------------------------------ something here --------------------------- -->
+		</TMPL_IF>
+		</TMPL_IF>
+		</TMPL_IF>
+		</TMPL_IF>
+		</TMPL_IF>
+	<TMPL_ELSE>
+		<TMPL_IF NAME="FIELD_VALUE">
+			<TMPL_IF NAME="TYPE_LABEL_ONLY">
+				<TMPL_VAR NAME="FIELD_VALUE">
+				<TMPL_IF NAME="REFERENCE_STRING">
+					&nbsp;{<TMPL_VAR NAME="REFERENCE_STRING">}
+				</TMPL_IF>
+			<TMPL_ELSE>
+				<TMPL_VAR NAME="FIELD_VALUE">
+				<TMPL_IF NAME="REFERENCE_STRING">
+					&nbsp;{<TMPL_VAR NAME="REFERENCE_STRING">}
+				</TMPL_IF>
+				<input type="hidden" name="<TMPL_VAR NAME="FIELD_NAME">" value="<TMPL_VAR NAME="FIELD_VALUE">" />
+			</TMPL_IF>
+		<TMPL_ELSE>
+			Campo vacio
+		</TMPL_IF>
+	</TMPL_IF>
+	</p>
+</TMPL_LOOP>
+
+<div class="note">* - campo obligatorio; R - campo con referencia a tabla externa</div>
+
+<input type="hidden" name="table" value="<TMPL_VAR NAME="TABLE_NAME">">
+<TMPL_IF NAME="ACTION_MODIFYFORM">
+	<input type="hidden" name="action" value="modify">
+	<input type="hidden" name="s_id" value="<TMPL_VAR NAME="S_ID">">
+	<input type="hidden" name="s_unit" value="<TMPL_VAR NAME="S_UNIT">">
+	<label for="submit">&nbsp;</label>
+	<input type="submit" class="formbutton" value="Modificar" />
+</TMPL_IF>
+<TMPL_IF NAME="ACTION_MODIFYPROBLEM">
+	<input type="hidden" name="action" value="modify">
+	<input type="hidden" name="s_id" value="<TMPL_VAR NAME="S_ID">">
+	<input type="hidden" name="s_unit" value="<TMPL_VAR NAME="S_UNIT">">
+	<label for="submit">&nbsp;</label>
+	<input type="submit" class="formbutton" value="Modificar" />
+</TMPL_IF>
+<TMPL_IF NAME="ACTION_ADDFORM">
+	<input type="hidden" name="action" value="add_new">
+	<input type="hidden" name="s_unit" value="<TMPL_VAR NAME="S_UNIT">">
+	<label for="submit">&nbsp;</label>
+	<input type="submit" class="formbutton" value="Agregar" />
+</TMPL_IF>
+<TMPL_IF NAME="ACTION_ADDPROBLEM">
+	<input type="hidden" name="action" value="add_new">
+	<input type="hidden" name="s_unit" value="<TMPL_VAR NAME="S_UNIT">">
+	<label for="submit">&nbsp;</label>
+	<input type="submit" class="formbutton" value="Agregar" />
+</TMPL_IF>
+
+</fieldset>
+</form>
+</TMPL_IF>
+<!-- end of form output -->
+</TMPL_IF>
